@@ -41,7 +41,7 @@ OrderHeader.init(
         sequelize,
         freezeTableName: true,
         underscored: true,
-        modelName: 'orderstatus',
+        modelName: 'orderheader',
     }
 );
 
