@@ -32,7 +32,7 @@ Client.init(
         allowNull: false,
     },
     email: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: false,
         validate:{
             isEmail: true,
