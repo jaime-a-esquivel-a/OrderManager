@@ -1,13 +1,25 @@
 const router = require('express').Router();
+const User = require ('../../models/User');
 
 
 //Ruta para traer todos los usuarios
 router.get('/', async (req, res) => {
-    try {
 
-    } catch (error) {
-        
+    try{
+
+        const usersData = await User.findAll({
+            //include: [{model: User}],
+        });
+
+        res.status(200).json(usersData);
+
     }
+    catch (err){
+
+        res.status(500).json(err);
+
+    }
+
 });
 
 //Ruta para traer un usuario
