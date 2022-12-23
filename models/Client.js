@@ -40,10 +40,29 @@ Client.init(
     },
   },
   {
+    hooks: {
+
+        beforeCreate: async (newClientData) => {
+
+            newClientData.email = await newClientData.email.toLowerCase();
+
+            return newClientData;
+
+        },
+        beforeUpdate: async (updatedClientData) =>{
+
+            updatedClientData.email = await updatedClientData.email.toLowerCase();
+
+            return updatedClientData;
+
+        }
+    },
+
     sequelize,
     freezeTableName: true,
     underscored: true,
     modelName: 'client',
+
   }
 );
 
