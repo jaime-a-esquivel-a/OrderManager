@@ -46,53 +46,65 @@ router.post('/', async (req, res) => {
         password: "123456"
     }
     */
-    try {
-       const newUser = await User.create({
-        first_name : req.body.first_name,
-        last_name : req.body.last_name,
-        email: req.body.email,
-        tel : req.body.tel,
-        password: req.body.password,
-       });
-       res.status(200).json(newUser);
-    } catch (error) {
-       res.status(500).json(error);
+    if (req.session.super){
+        try {
+        const newUser = await User.create({
+            first_name : req.body.first_name,
+            last_name : req.body.last_name,
+            email: req.body.email,
+            tel : req.body.tel,
+            password: req.body.password,
+        });
+        res.status(200).json(newUser);
+        } catch (error) {
+        res.status(500).json(error);
+        }
+    } else {
+        res.json({message : "You don't have permission to create an user"})
     }
 });
 
 //Ruta para actualizar/modificar un usuario (solo administrador)
 router.put('/:email', async (req, res) => {
-    try {
-        const updateUser = await User.update(req.body, {
-            where: {
-                email: req.params.email,
-            },
-        });
-        if (!updateUser[0]) {
-            res.status(404).json({message : "No user was found with that email in database"});
-            return;
+    if (req.session.super){
+        try {
+            const updateUser = await User.update(req.body, {
+                where: {
+                    email: req.params.email,
+                },
+            });
+            if (!updateUser[0]) {
+                res.status(404).json({message : "No user was found with that email in database"});
+                return;
+            }
+            res.status(200).json(updateUser);
+        } catch (error) {
+            res.status(500).json(error);
         }
-        res.status(200).json(updateUser);
-    } catch (error) {
-        res.status(500).json(error);
+    } else {
+        res.json({message : "You don't have permission to update an user"})
     }
 });
 
 //Ruta para eliminar un usuario (solo administrador)
 router.delete('/:email', async (req, res) => {
-    try {
-        const deleteUser = await User.destroy({
-            where : {
-                email : req.params.email,
-            },
-        });
-        if (!deleteUser) {
-            res.status(404).json({ message: 'No user was found with that email in database' });
-            return;
+    if (req.session.super){
+        try {
+            const deleteUser = await User.destroy({
+                where : {
+                    email : req.params.email,
+                },
+            });
+            if (!deleteUser) {
+                res.status(404).json({ message: 'No user was found with that email in database' });
+                return;
+            }
+            res.status(200).json(deleteUser); 
+        } catch (error) {
+            res.status(500).json(error);
         }
-        res.status(200).json(deleteUser); 
-    } catch (error) {
-        res.status(500).json(error);
+    } else {
+        res.json({message : "You don't have permission to delete an user"})
     }
 });
 
@@ -112,6 +124,7 @@ router.post('/login', async (req, res) => {
           return;
         }
         console.log(dbUserData);
+        console.log(dbUserData.dataValues.superuser);
         const validPassword = await dbUserData.checkPassword(req.body.password);
     
         if (!validPassword) {
@@ -122,6 +135,9 @@ router.post('/login', async (req, res) => {
         }
     
         req.session.save(() => {
+          if (dbUserData.dataValues.superuser){
+            req.session.super = true;
+          }
           req.session.loggedIn = true;
           res
             .status(200)
