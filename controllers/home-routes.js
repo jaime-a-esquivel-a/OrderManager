@@ -4,7 +4,12 @@ const router = require('express').Router();
 router.get('/', async (req, res) => {
     try {
 
-    } catch (error) {
+        res.render('login', {loggedIn: req.session.loggedIn});
+
+    } catch (err) {
+
+        console.log(err);
+        res.status(500).json(err);
         
     }
 });
