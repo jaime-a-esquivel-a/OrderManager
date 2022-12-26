@@ -8,7 +8,7 @@
     <script src="https://kit.fontawesome.com/9a0f342128.js" crossorigin="anonymous"></script>
   </head>
   <body>
-      <div class="container-fluid h-100 " >
+    <div class="container-fluid">
         <div class="row flex-nowrap">
           <div class="col-auto  col-md-2 col-xl-2 px-sm-2 px-0 bg-secondary bg-opacity-10  sticky-top d-lg-block d-md-block collapse" id="navbarNav">
             <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100 sticky-top collapse ">
@@ -19,43 +19,35 @@
               <br class="border-bottom border-secondary">
               {{#if loggedIn}}
               <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                  <li>
-                      <a href="/" class="nav-link px-0 align-middle"><i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline" id="home">Home</span> </a>
-                  </li>
-                  <li>
-                      <a href="/" class="nav-link px-0 align-middle"><i class="fa-solid fa-user"></i> <span class="ms-1 d-none d-sm-inline" id="users">Users</span> </a>
-                  </li>
-                  <li>
-                      <a href="/" class="nav-link px-0 align-middle"><i class="fa-solid fa-brush"></i> <span class="ms-1 d-none d-sm-inline" id="clients">Clients</span> </a>
-                  </li>
-                  <li>
-                      <a href="/" class="nav-link px-0 align-middle"><i class="fa-solid fa-brush"></i> <span class="ms-1 d-none d-sm-inline" id="materials">Materials</span> </a>
-                  </li>
-                  <li>
-                      <a href="/" class="nav-link px-0 align-middle"><i class="fa-solid fa-handshake"></i> <span class="ms-1 d-none d-sm-inline" id="orders">Orders</span> </a>
-                  </li>
-                  <li>
-                      <a href="/" class="nav-link px-0 align-middle"><i class="fa-solid fa-handshake"></i> <span class="ms-1 d-none d-sm-inline" id="logout">Logout</span> </a>
-                  </li>
+                <li>
+                  <a href="/" class="nav-link px-0 align-middle"><i class="fa-solid fa-house"></i> <span class="ms-1 d-none d-sm-inline" id="home">Home</span> </a>
+                </li>
+                <li>
+                  <a href="/" class="nav-link px-0 align-middle"><i class="fa-solid fa-user"></i> <span class="ms-1 d-none d-sm-inline" id="users">Users</span> </a>
+                </li>
+                <li>
+                  <a href="/" class="nav-link px-0 align-middle"><i class="fa-solid fa-user"></i> <span class="ms-1 d-none d-sm-inline" id="clients">Clients</span> </a>
+                </li>
+                <li>
+                  <a href="/" class="nav-link px-0 align-middle"><i class="fa-solid fa-brush"></i> <span class="ms-1 d-none d-sm-inline" id="materials">Materials</span> </a>
+                </li>
+                <li>
+                  <a href="/" class="nav-link px-0 align-middle"><i class="fa-solid fa-handshake"></i> <span class="ms-1 d-none d-sm-inline" id="orders">Orders</span> </a>
+                </li>
               </ul>
-              {{/if}}
+              <div class="dropdown pb-4" >
+                <button class="btn btn-outline-primary" type="button" id="btnLogout"><i class="fa-solid fa-right-from-bracket"></i></button>
+              </div>
+              {{/if}} 
             </div>
+          </div>
+          <!--Contenido-->                      
+            {{{ body }}}
+          <!--Final-->
         </div>
-        <div class="col px-0 bg-light bg-opacity-20 border-bottom ">
-            <div class="navbar navbar-expand-md bg-primary  px-0 sticky-top">
-                <div class="container-fluid">
-                  <a class="navbar-brand text-light" href="#">Order Manager</a>
-                  <button class="navbar-toggler bg-light " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
-                </div>
-            </div>
-              <!-- Contenido -->
-              {{{body}}}
-              <!-- Final -->
-        </div>
-    </div>
-    <!--script src="./js/login.js"></script-->
+      </div>
+      
+<!--<script src=".js/main.js"></script>--> 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
   </body>
 </html>
