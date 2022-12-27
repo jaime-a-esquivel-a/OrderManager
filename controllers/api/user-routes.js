@@ -8,6 +8,7 @@ router.get('/', async (req, res) => {
         const usersData = await User.findAll({});
         if (!usersData){
             res.status(404).json({message : "No users found in database"});
+            return;
         }
         res.status(200).json(usersData);
     }

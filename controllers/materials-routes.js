@@ -7,6 +7,7 @@ router.get('/', async (req, res) => {
         const materialsData = await Material.findAll({});
         if (!materialsData){
             res.status(404).json({message : "No materials found in database"});
+            return;
         }
         res.status(200).json(materialsData);
     } catch (error){
