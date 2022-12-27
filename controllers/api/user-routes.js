@@ -10,7 +10,13 @@ router.get('/', async (req, res) => {
             res.status(404).json({message : "No users found in database"});
             return;
         }
-        res.status(200).json(usersData);
+        const users = usersData.map((user) =>
+        user.get({ plain: true })
+        );
+        res.render('createUser', {
+            users,
+            loggedIn: req.session.loggedIn
+        });
     }
     catch (error){
         res.status(500).json(error);
@@ -49,16 +55,16 @@ router.post('/', async (req, res) => {
     */
     if (req.session.super){
         try {
-        const newUser = await User.create({
-            first_name : req.body.first_name,
-            last_name : req.body.last_name,
-            email: req.body.email,
-            tel : req.body.tel,
-            password: req.body.password,
-        });
-        res.status(200).json(newUser);
+            const newUser = await User.create({
+                first_name : req.body.first_name,
+                last_name : req.body.last_name,
+                email: req.body.email,
+                tel : req.body.tel,
+                password: req.body.password,
+            });
+            res.status(200).json(newUser);
         } catch (error) {
-        res.status(500).json(error);
+            res.status(500).json(error);
         }
     } else {
         res.json({message : "You don't have permission to create an user"})
@@ -124,8 +130,6 @@ router.post('/login', async (req, res) => {
             .json({ message: 'No user was found with that email' });
           return;
         }
-        console.log(dbUserData);
-        console.log(dbUserData.dataValues.superuser);
         const validPassword = await dbUserData.checkPassword(req.body.password);
     
         if (!validPassword) {
