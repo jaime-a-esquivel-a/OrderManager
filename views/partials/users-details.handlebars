@@ -1,0 +1,73 @@
+<!-- table content id="tableContent"-->
+<tr id="tableContent">
+    <th scope="row">{{id}}</th>
+    <td>{{first_name}}</td>
+    <td>{{last_name}}</td>
+    <td>
+        <a class="btn btn-primary fa-xs" href="mailto:{{email}}" role="button"><i class="fa-solid fa-envelope"></i></a>
+    </td>
+    <td>
+        <a class="btn btn-primary fa-xs" href="tel:{{tel}}" role="button"><i class="fa-solid fa-phone"></i></a>
+    </td>
+    <td>
+    <!--id="btnModify"-->
+        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#modal" id="btnModify"> 
+            <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <!-- Modal id="modalModify"-->
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" id="modalModify">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modal">Modify User</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 row">
+                <!-- Name id="nameM"-->
+                <label for="inputFirstName" class="col-sm-2 col-form-label">Firsts Name:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="nameM">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                <!-- Last Name id="lastM"-->
+                <label for="inputLastName" class="col-sm-2 col-form-label" >Last Name:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="lastM">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <!-- Email id="emailM"-->
+                    <label for="inputEmail" class="col-sm-2 col-form-label" >Email:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="emailM">
+                        </div>
+                </div>
+                <div class="mb-3 row">
+                    <!-- Tel id="telM"-->
+                    <label for="inputTel" class="col-sm-2 col-form-label" >Tel:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="telM">
+                        </div>
+                </div>
+                <div class="mb-3 row">
+                    <!-- Password id="passM"-->
+                    <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control"  id="passM">
+                        </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <!-- Button id="btnUpdate"-->
+                <button type="button" class="btn btn-primary" id="btnUpdate">Submit</button>
+            </div>
+            </div>
+        </div>
+        </div>
+        <!-- Button id="btnDelete"-->
+        <button class="btn btn-danger fa-xs" type="submit" id="btnDelete"><i class="fa-solid fa-trash-can"></i></button>
+    </td>
+</tr>
+<!-- table content-->
