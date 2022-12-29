@@ -13,63 +13,62 @@
     </td>
     <td>
     <!--id="btnModify"-->
-        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#modal" id="btnModify"> 
+        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#UpdateUserModal-{{id}}" id="btnModify-{{id}}"> 
             <i class="fa-solid fa-pen-to-square"></i>
         </button>
         <!-- Modal id="modalModify"-->
-        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" id="modalModify">
+        <div class="modal fade bd-example-modal-lg" id="UpdateUserModal-{{id}}" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" id="modalModify-{{id}}">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modal">Modify User</h1>
+                <h1 class="modal-title fs-5" id="modal-{{id}}">Modify User</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="mb-3 row">
                 <!-- Name id="nameM"-->
-                <label for="inputFirstName" class="col-sm-2 col-form-label">Firsts Name:</label>
+                <label for="inputFirstName-{{id}}" class="col-sm-2 col-form-label">First Name:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="nameM">
+                        <input type="text" class="form-control" id="inputFirstName-{{id}}" value="{{first_name}}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                 <!-- Last Name id="lastM"-->
-                <label for="inputLastName" class="col-sm-2 col-form-label" >Last Name:</label>
+                <label for="inputLastName-{{id}}" class="col-sm-2 col-form-label" >Last Name:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="lastM">
+                        <input type="text" class="form-control" id="inputLastName-{{id}}" value="{{last_name}}">
                     </div>
                 </div>
                 <div class="mb-3 row">
                     <!-- Email id="emailM"-->
-                    <label for="inputEmail" class="col-sm-2 col-form-label" >Email:</label>
+                    <label for="inputEmail-{{id}}" class="col-sm-2 col-form-label" >Email:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="emailM">
+                            <input type="text" class="form-control" id="InputEmail-{{id}}" value="{{email}}">
                         </div>
                 </div>
                 <div class="mb-3 row">
                     <!-- Tel id="telM"-->
-                    <label for="inputTel" class="col-sm-2 col-form-label" >Tel:</label>
+                    <label for="inputTel-{{id}}" class="col-sm-2 col-form-label" >Tel:</label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" id="telM">
+                            <input type="text" class="form-control" id="inputTel-{{id}}" value="{{tel}}">
                         </div>
                 </div>
                 <div class="mb-3 row">
-                    <!-- Password id="passM"-->
-                    <label for="inputPassword" class="col-sm-2 col-form-label">Password:</label>
+                    <label for="inputPassword-{{id}}" class="col-sm-2 col-form-label">New Password:</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control"  id="passM">
+                            <input type="password" class="form-control" id="inputPassword-{{id}}" placeholder="Type only if you want to change password">
                         </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <!-- Button id="btnUpdate"-->
-                <button type="button" class="btn btn-primary" id="btnUpdate">Submit</button>
+                <button type="button" class="btn btn-primary" id="btnUpdate-{{id}}">Submit</button>
             </div>
             </div>
         </div>
         </div>
         <!-- Button id="btnDelete"-->
-        <button class="btn btn-danger fa-xs" type="submit" id="btnDelete"><i class="fa-solid fa-trash-can"></i></button>
+        <button class="btn btn-danger fa-xs" type="submit" id="btnDelete-{{id}}"><i class="fa-solid fa-trash-can"></i></button>
     </td>
 </tr>
 <!-- table content-->
