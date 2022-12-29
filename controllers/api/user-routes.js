@@ -4,22 +4,31 @@ const User = require ('../../models/User');
 
 //Ruta para traer todos los usuarios
 router.get('/', async (req, res) => {
-    try{
-        const usersData = await User.findAll({});
-        if (!usersData){
-            res.status(404).json({message : "No users found in database"});
-            return;
+
+    if (req.session.loggedIn){
+
+        try{
+            const usersData = await User.findAll({});
+            if (!usersData){
+                res.status(404).json({message : "No users found in database"});
+                return;
+            }
+            const users = usersData.map((user) =>
+            user.get({ plain: true })
+            );
+            res.render('user', {
+                users,
+                loggedIn: req.session.loggedIn
+            });
         }
-        const users = usersData.map((user) =>
-        user.get({ plain: true })
-        );
-        res.render('createUser', {
-            users,
-            loggedIn: req.session.loggedIn
-        });
-    }
-    catch (error){
-        res.status(500).json(error);
+        catch (error){
+            res.status(500).json(error);
+        }
+
+    } else {
+        //res.render('login', {loggedIn: req.session.loggedIn});
+        //document.location.replace('../login');
+        //window.location.replace('/');
     }
 
 });
