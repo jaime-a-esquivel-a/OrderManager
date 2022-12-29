@@ -9,7 +9,13 @@ router.get('/', async (req, res) => {
             res.status(404).json({message : "No materials found in database"});
             return;
         }
-        res.status(200).json(materialsData);
+        const materials = materialsData.map((material) =>
+        material.get({ plain: true })
+        );
+        res.render('createMaterial', {
+            materials,
+            loggedIn: req.session.loggedIn
+        });
     } catch (error){
         res.status(500).json(error);
     }
