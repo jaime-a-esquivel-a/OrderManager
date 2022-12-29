@@ -12,7 +12,16 @@ router.get('/', async (req, res) => {
             return;
         }
 
-        res.status(200).json(clientsData);
+        const clients = clientsData.map((client) =>
+            client.get({ plain: true })
+        );
+
+        res.render('client', {
+            clients,
+            loggedIn: req.session.loggedIn
+        });
+
+        //res.status(200).json(clientsData);
 
     } catch (error) {
         res.status(500).json(error);
