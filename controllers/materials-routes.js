@@ -12,7 +12,7 @@ router.get('/', async (req, res) => {
         const materials = materialsData.map((material) =>
         material.get({ plain: true })
         );
-        res.render('createMaterial', {
+        res.render('material', {
             materials,
             loggedIn: req.session.loggedIn
         });
