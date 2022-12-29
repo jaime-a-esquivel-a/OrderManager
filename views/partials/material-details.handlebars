@@ -1,0 +1,75 @@
+<tr id="tableContentmat">
+    <th scope="row">{{id}}</th>
+    <td>{{sku}}</td>
+    <td>{{description}}</td>
+    <td>{{stock}}</td>
+    <td>{{uom}}</td>
+    <td>{{price}}</td>
+    <!--id="btnModify"-->
+    <td>
+        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#modal" id="btnModify"> 
+            <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+
+
+
+        <!-- Modal id="modalModifyMat"-->
+        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" id="modalModifyMat">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modal">Modify Material</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3 row">
+                <!-- SKU id="skuMat"-->
+                <label for="inputMaterialSKU" class="col-sm-2 col-form-label">Material SKU:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="skuMat">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                <!-- Description id="descMat"-->
+                <label for="inputDescMat" class="col-sm-2 col-form-label" >Description:</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="descMat">
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <!-- Stock id="stockMat"-->
+                    <label for="inputStockMat" class="col-sm-2 col-form-label" >Stock:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="stockMat">
+                        </div>
+                </div>
+                <div class="mb-3 row">
+                    <!-- UOM id="uomMat"-->
+                    <label for="inputUomMat" class="col-sm-2 col-form-label" >Unit of Measure:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="uomMat">
+                        </div>
+                </div>
+                <div class="mb-3 row">
+                    <!-- Price id="priceMat"-->
+                    <label for="inputPriceMat" class="col-sm-2 col-form-label">Price:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"  id="priceMat">
+                        </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+
+                <!-- Button id="btnUpdateMat"-->
+                <button type="button" class="btn btn-primary" id="btnUpdateMat">Submit</button>
+            </div>
+            </div>
+        </div>
+        </div>
+
+
+        <!-- Button id="btnDelete"-->
+        <button class="btn btn-danger fa-xs" type="submit" id="btnDelete"><i class="fa-solid fa-trash-can"></i></button>
+    </td>
+</tr>
+<!-- table content-->
