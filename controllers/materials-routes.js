@@ -36,7 +36,18 @@ router.get('/:sku', async (req, res) => {
             res.status(404).json({message : "No material was found with that SKU in database"});
             return;
         }
-        res.status(200).json(materialData);
+
+        //res.status(200).json(materialData);
+
+        const materials = materialData.map((material) =>
+            material.get({ plain: true })
+        );
+
+        res.render('material', {
+            materials,
+            loggedIn: req.session.loggedIn
+        });
+
     } catch (error) {
         res.status(500).json(error);
     }

@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const router = require('express').Router();
 const Client = require ('../models/Client');
 
@@ -54,9 +55,11 @@ router.get('/email/:email', async (req, res) => {
 router.get('/rfc/:rfc', async (req, res) => {
     try {
 
-        const clientData = await Client.findOne({
+        const clientData = await Client.findAll({
             where:{
-                rfc: req.params.rfc,
+                rfc: {
+                    [Op.substring]: req.params.rfc
+                }
             }
         });
 
@@ -65,7 +68,16 @@ router.get('/rfc/:rfc', async (req, res) => {
             return;
         }
 
-        res.status(200).json(clientData);
+        //res.status(200).json(clientData);
+
+        const clients = clientData.map((client) =>
+            client.get({ plain: true })
+        );
+
+        res.render('client', {
+            clients,
+            loggedIn: req.session.loggedIn
+        });
 
     } catch (error) {
         res.status(500).json(error);

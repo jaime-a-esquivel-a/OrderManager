@@ -1,6 +1,7 @@
 const addUserForm = document.getElementById('addUser-form');
 const modifyUser = document.getElementById('TableUser');
 const deleteUsers = document.getElementsByClassName('deleteUser');
+const searchUser = document.getElementById('btnSearch');
 
 async function newUserHandler(event){
 
@@ -95,6 +96,14 @@ async function deleteUserHandler(event) {
     }
 }
 
+async function searchUserHandler(event) {
+
+    event.preventDefault();
+    const email_string = document.getElementById('inputSearch').value;
+    window.location.href = (`/api/users/${email_string}`);
+
+}
+
 
 // Add the event handler for the form submission
 addUserForm.addEventListener('submit', newUserHandler);
@@ -102,7 +111,9 @@ addUserForm.addEventListener('submit', newUserHandler);
 // Add the event handler for the form submission
 modifyUser.addEventListener('submit', updateUserHandler);
 
-
 for (let i = 0; i < deleteUsers.length; i++){
     deleteUsers[i].addEventListener('click', deleteUserHandler);
 }
+
+// Add event handler for search bar
+searchUser.addEventListener('click', searchUserHandler);

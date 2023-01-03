@@ -1,6 +1,7 @@
 const addClientForm = document.getElementById('addClient-form');
 const modifyClient = document.getElementById('TableClient');
 const deleteClients = document.getElementsByClassName('deleteClient');
+const searchClients = document.getElementById('btnSearch');
 
 async function newClientHandler(event){
 
@@ -90,18 +91,29 @@ async function deleteClientHandler(event) {
     }
 }
 
+async function searchClientHandler(event) {
 
+    event.preventDefault();
+    const rfc_string = document.getElementById('inputSearch').value;
 
+    if (rfc_string != '' ){
+        window.location.href = (`/client/rfc/${rfc_string}`);
+    }else{
+        window.location.href = (`/client/`);
+    }
+
+}
 
 // Add the event handler for the form submission
 addClientForm.addEventListener('submit', newClientHandler);
-
 
 // Add the event handler for the form submission
 modifyClient.addEventListener('submit', updateClientHandler);
 
 
-
 for (let i = 0; i < deleteClients.length; i++){
     deleteClients[i].addEventListener('click', deleteClientHandler);
 }
+
+// Add event handler for search bar
+searchClients.addEventListener('click', searchClientHandler);
