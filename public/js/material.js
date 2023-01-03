@@ -1,6 +1,7 @@
 const addMaterialForm = document.getElementById('addMaterial-form');
 const modifyMaterial = document.getElementById('TableMat');
 const deleteMaterials = document.getElementsByClassName('deleteMaterial');
+const searchMaterials = document.getElementById('btnSearch');
 
 async function newMaterialHandler(event){
     event.preventDefault();
@@ -83,6 +84,29 @@ async function deleteMaterialHandler(event) {
     }
 }
 
+async function searchMaterialHandler(event) {
+
+    event.preventDefault();
+    const sku_string = document.getElementById('inputSearch').value;
+    window.location.href = (`/material/${sku_string}`);
+
+    /*const response = await fetch(`/material/${sku_string}`, {
+
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+
+    });
+
+    if(response.ok){
+        document.location.replace(`/material/${sku_string}`);
+    }else{
+        alert('Error when searching material');
+    }*/
+
+}
+
 
 // Add the event handler for the form submission
 addMaterialForm.addEventListener('submit', newMaterialHandler);
@@ -90,7 +114,9 @@ addMaterialForm.addEventListener('submit', newMaterialHandler);
 // Add the event handler for the form submission
 modifyMaterial.addEventListener('submit', updateMaterialHandler);
 
-
 for (let i = 0; i < deleteMaterials.length; i++){
     deleteMaterials[i].addEventListener('click', deleteMaterialHandler);
 }
+
+// Add event handler for search bar
+searchMaterials.addEventListener('click', searchMaterialHandler);

@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const router = require('express').Router();
 const User = require ('../../models/User');
 
@@ -36,16 +37,29 @@ router.get('/', async (req, res) => {
 //Ruta para traer un usuario
 router.get('/:email', async (req, res) => {
     try {
-        const userData = await User.findOne({
+        const userData = await User.findAll({
             where: {
-                email : req.params.email,
+                email : {
+                    [Op.substring]: req.params.email,
+                }
             }
         });
         if (!userData) {
             res.status(404).json({message : "No user was found with that email in database"});
             return;
         }
-        res.status(200).json(userData);
+        
+        //res.status(200).json(userData);
+
+        const users = userData.map((user) =>
+            user.get({ plain: true })
+        );
+
+        res.render('user', {
+            users,
+            loggedIn: req.session.loggedIn
+        });
+
     } catch (error) {
         res.status(500).json(error);
     }
