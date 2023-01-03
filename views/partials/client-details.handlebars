@@ -1,7 +1,7 @@
 <tr id="tableContent-{{id}}">
 
     <th scope="row">{{id}}</th>
-    <td>{{rfc}}</td>
+    <td id = "RFCvalue-{{id}}">{{rfc}}</td>
     <td>{{active}}</td>
     <td>{{name}}</td>
     <td>
@@ -18,72 +18,73 @@
         <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#UpdateClientModal-{{id}}" id="btnModify-{{id}}"> 
             <i class="fa-solid fa-pen-to-square"></i>
         </button>
-
-        <!--Update Client Modal-->
-        <div class="modal fade" id="UpdateClientModal-{{id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content" id="modalclient-{{id}}">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modify Client</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <!--RFC-->
-                        <div class="mb-3 row">
-                            <label for="inputRFC-{{id}}" class="col-sm-2 col-form-label">RFC:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputRFC-{{id}}" value="{{rfc}}">
-                            </div>
+        <form class = "UpdateClient" data-index = "{{id}}">
+            <!--Update Client Modal-->
+            <div class="modal fade" id="UpdateClientModal-{{id}}" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content" id="modalModify-{{id}}">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="modal-{{id}}">Modify Client</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <!--Active flag-->
-                        <div class="mb-3 row">
-                            <div class="input-group mb-3">
-                                <label for="inputActive-{{id}}" class="col-sm-2 col-form-label">Active:</label>
-                                <div class="input-group-prepend">
-                                    <input type="checkbox" id="ActiveClient-{{id}}" checked="{{active}}">
+                        <div class="modal-body">
+                            <!--RFC-->
+                            <div class="mb-3 row">
+                                <label for="inputRFC-{{id}}" class="col-sm-2 col-form-label">RFC:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputRFC-{{id}}" value="{{rfc}}">
+                                </div>
+                            </div>
+                            <!--Active flag-->
+                            <div class="mb-3 row">
+                                <div class="input-group mb-3">
+                                    <label for="inputActive-{{id}}" class="col-sm-2 col-form-label">Active:</label>
+                                    <div class="input-group-prepend">
+                                        <input type="checkbox" id="inputActive-{{id}}" checked="{{active}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Client Name-->
+                            <div class="mb-3 row">
+                                <label for="inputClientName-{{id}}" class="col-sm-2 col-form-label">Name:</label>
+                                <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputClientName-{{id}}" value="{{name}}">
+                                </div>
+                            </div>
+                            <!--Client email-->
+                            <div class="mb-3 row">
+                                <label for="inputClientEmail-{{id}}" class="col-sm-2 col-form-label">Email:</label>
+                                <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputClientEmail-{{id}}" value="{{email}}">
+                                </div>
+                            </div>
+                            <!--Client tel-->
+                            <div class="mb-3 row">
+                                <label for="inputClientTel-{{id}}" class="col-sm-2 col-form-label" >Tel:</label>
+                                <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputClientTel-{{id}}" value="{{tel}}">
+                                </div>
+                            </div>
+                            <!--Client address-->
+                            <div class="mb-3 row">
+                                <label for="inputClientAddress-{{id}}" class="col-sm-2 col-form-label" >Address:</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="inputClientAddress-{{id}}" value="{{address}}">
                                 </div>
                             </div>
                         </div>
-                        <!--Client Name-->
-                        <div class="mb-3 row">
-                            <label for="inputClientName-{{id}}" class="col-sm-2 col-form-label">Name:</label>
-                            <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputClientName-{{id}}" value="{{name}}">
-                            </div>
+                        <!-- BtnSubmit id="btnUpdate"-->
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary" id="btnUpdate-{{id}}">Submit</button>
                         </div>
-                        <!--Client email-->
-                        <div class="mb-3 row">
-                            <label for="inputClientEmail-{{id}}" class="col-sm-2 col-form-label">Email:</label>
-                            <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputClientEmail-{{id}}" value="{{email}}">
-                            </div>
-                        </div>
-                        <!--Client tel-->
-                        <div class="mb-3 row">
-                            <label for="inputClientTel-{{id}}" class="col-sm-2 col-form-label" >Tel:</label>
-                            <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputClientTel-{{id}}" value="{{tel}}">
-                            </div>
-                        </div>
-                        <!--Client address-->
-                        <div class="mb-3 row">
-                            <label for="inputClientAddress-{{id}}" class="col-sm-2 col-form-label" >Address:</label>
-                            <div class="col-sm-10">
-                                <input type="text" class="form-control" id="inputClientAddress-{{id}}" value="{{address}}">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- BtnSubmit id="btnSubmit"-->
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" id="btnSubmit-{{id}}">Submit</button>
                     </div>
                 </div>
             </div>
-        </div> 
+        </form>
 
         <!--Delete Button-->
-        <button class="btn btn-danger fa-xs" type="submit" id="btnDelete-{{id}}" value="{{id}}">
-            <i class="fa-solid fa-trash-can"></i>
+        <button class="btn btn-danger fa-xs deleteClient" type="button" id="btnDeleteCl-{{id}}" data-index = "{{id}}">
+            <i class="fa-solid fa-trash-can" id="iconDeleteCl-{{id}}" data-index = "{{id}}"></i>
         </button>
 
     </td>

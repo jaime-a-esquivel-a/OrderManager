@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const router = require('express').Router();
 const Material = require ('../models/Material');
 
@@ -24,9 +25,11 @@ router.get('/', async (req, res) => {
 //Ruta para traer un material
 router.get('/:sku', async (req, res) => {
     try {
-        const materialData = await Material.findOne({
+        const materialData = await Material.findAll({
             where: {
-                sku : req.params.sku,
+                sku : {
+                    [Op.substring]: req.params.sku
+                }
             }
         });
         if (!materialData) {

@@ -16,58 +16,60 @@
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnCreate"> <!--Create Btn-->
                 <i class="fa-solid fa-circle-plus"></i><span class="ms-1 d-none d-sm-inline">Create</span>
             </button>
-            <!-- Modal id="modalUser"-->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content" id="modaluser">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Create Material</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-3 row">
-                            <!-- SKU id="inputMaterialSKU"-->
-                            <label for="inputMaterialSKU" class="col-sm-2 col-form-label">Material SKU:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputMaterialSKU">
+            <!-- Modal id="modalMaterial"-->
+            <form id = 'addMaterial-form'>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content" id="modalMaterial">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Create Material</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="mb-3 row">
+                                <!-- SKU id="inputMaterialSKU"-->
+                                <label for="inputMaterialSKU" class="col-sm-2 col-form-label">Material SKU:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputMaterialSKU">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                <!-- Description id="inputDescMat"-->
+                                <label for="inputDescMat" class="col-sm-2 col-form-label">Description:</label>
+                                    <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputDescMat">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                <!-- Stock id="inputStockMat"-->
+                                <label for="inputStockMat" class="col-sm-2 col-form-label">Stock:</label>
+                                    <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputStockMat">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                <!-- UOM id="inputUomMat"-->
+                                <label for="inputUomMat" class="col-sm-2 col-form-label" >Unit of Measure:</label>
+                                    <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputUomMat">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                <!-- Price id="inputPriceMat"-->
+                                <label for="inputPriceMat" class="col-sm-2 col-form-label" >Price:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputPriceMat">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="mb-3 row">
-                            <!-- Description id="inputDescMat"-->
-                            <label for="inputDescMat" class="col-sm-2 col-form-label">Description:</label>
-                                <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputDescMat">
-                                </div>
+                            <div class="modal-footer">
+                                <!-- BtnSubmit id="btnSubmitMat"-->
+                                <button type="submit" class="btn btn-primary" id="btnSubmitMat">Submit</button>
                             </div>
-                            <div class="mb-3 row">
-                            <!-- Stock id="inputStockMat"-->
-                            <label for="inputStockMat" class="col-sm-2 col-form-label">Stock:</label>
-                                <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputStockMat">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                            <!-- UOM id="inputUomMat"-->
-                            <label for="inputUomMat" class="col-sm-2 col-form-label" >Unit of Measure:</label>
-                                <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputUomMat">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                            <!-- Price id="inputPriceMat"-->
-                            <label for="inputPriceMat" class="col-sm-2 col-form-label" >Price:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputPriceMat">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <!-- BtnSubmit id="btnSubmit"-->
-                            <button type="button" class="btn btn-primary" id="btnSubmit">Submit</button>
                         </div>
                     </div>
                 </div>
-            </div>              
+            </form>              
         </div>
         <div class="ms-auto p-2">
         <form class="d-flex" role="search">
@@ -80,7 +82,7 @@
     </div>
 
     <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover" id = "TableMat">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
@@ -101,4 +103,4 @@
     </div>
 </div>
 
-<!--<script src=".js/ "></script>-->  
+<script src='/js/material.js'></script> 
