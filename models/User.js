@@ -63,9 +63,10 @@ User.init(
             beforeUpdate: async (updatedUserData) =>{
 
                 updatedUserData.email = await updatedUserData.email.toLowerCase();
-
-                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
-
+                
+                if (updatedUserData.password !== ""){
+                    updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+                }
                 return updatedUserData;
 
             }

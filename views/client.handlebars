@@ -1,4 +1,4 @@
-{{#if loggedIn}}
+<!--{{#if loggedIn}}-->
 <div class="col ps-md-2 pt-2">
 
     <div class="page-header">
@@ -6,9 +6,9 @@
             <div class="container-fluid">
                 <!--Page Title-->  
                 <h2>Clients</h2>
-                <!--button class="navbar-toggler bg-light " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <button class="navbar-toggler bg-light " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
-                </button-->
+                </button>
             </div>
         </div>
     </div>
@@ -18,73 +18,73 @@
         <div class="p-2">
 
             <!--Create Client button-->
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#CreateClientModal" id="btnCreateClient">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnCreate">
                 <i class="fa-solid fa-circle-plus"></i><span class="ms-1 d-none d-sm-inline">Create</span>
             </button>
 
             <!--Create Client Modal-->
             <form id='addClient-form'>
-            <div class="modal fade" id="CreateClientModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content" id="modalclient">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Create Client</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <!--RFC-->
-                            <div class="mb-3 row">
-                                <label for="inputRFC" class="col-sm-2 col-form-label">RFC:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputRFC">
-                                </div>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content" id="modalclient">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Create Client</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <!--Active flag-->
-                            <div class="mb-3 row">
-                                
-                                <div class="input-group mb-3">
-                                    <label for="inputActive" class="col-sm-2 col-form-label">Active:</label>
-                                    <div class="input-group-prepend">
-                                        <input type="checkbox" id="inputActive" checked="true">
+                            <div class="modal-body">
+                                <!--RFC-->
+                                <div class="mb-3 row">
+                                    <label for="inputRFC" class="col-sm-2 col-form-label">RFC:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputRFC">
+                                    </div>
+                                </div>
+                                <!--Active flag-->
+                                <div class="mb-3 row">
+                                    
+                                    <div class="input-group mb-3">
+                                        <label for="inputActive" class="col-sm-2 col-form-label">Active:</label>
+                                        <div class="input-group-prepend">
+                                            <input type="checkbox" id="inputActive" checked="true">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Client Name-->
+                                <div class="mb-3 row">
+                                    <label for="inputClientName" class="col-sm-2 col-form-label">Name:</label>
+                                    <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputClientName">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                <!--Client email-->
+                                <label for="inputClientEmail" class="col-sm-2 col-form-label">Email:</label>
+                                    <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputClientEmail">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                <!--Client tel-->
+                                <label for="inputClientTel" class="col-sm-2 col-form-label" >Tel:</label>
+                                    <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="inputClientTel">
+                                    </div>
+                                </div>
+                                <div class="mb-3 row">
+                                <!--Client address-->
+                                <label for="inputClientAddress" class="col-sm-2 col-form-label" >Address:</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="inputClientAddress">
                                     </div>
                                 </div>
                             </div>
-                            <!--Client Name-->
-                            <div class="mb-3 row">
-                                <label for="inputClientName" class="col-sm-2 col-form-label">Name:</label>
-                                <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputClientName">
-                                </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
                             </div>
-                            <div class="mb-3 row">
-                            <!--Client email-->
-                            <label for="inputClientEmail" class="col-sm-2 col-form-label">Email:</label>
-                                <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputClientEmail">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                            <!--Client tel-->
-                            <label for="inputClientTel" class="col-sm-2 col-form-label" >Tel:</label>
-                                <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="inputClientTel">
-                                </div>
-                            </div>
-                            <div class="mb-3 row">
-                            <!--Client address-->
-                            <label for="inputClientAddress" class="col-sm-2 col-form-label" >Address:</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputClientAddress">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" class="btn btn-primary" id="btnSubmit">Submit</button>
                         </div>
                     </div>
-                </div>
-            </div>     
-        </div>
+                </div>     
+            </div>
         </form>
 
         <!--Search Client form-->
@@ -99,15 +99,15 @@
      
     <!--Client list display-->
     <div class="table-responsive">
-        <table class="table table-hover">
+        <table class="table table-hover" id = "TableClient">
             <thead class="thead-dark">
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">RFC</th>
-                <th scope="col">ACTIVE</th>
-                <th scope="col">NAME</th>
-                <th scope="col">TEL</th>
-                <th scope="col">EMAIL</th>
+                <th scope="col">Active</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
             </tr>
             </thead>
             <tbody class="align-self-center">
@@ -120,4 +120,4 @@
 
 </div>
 <script src='/js/client.js'></script>
-{{/if}} 
+<!--{{/if}} -->

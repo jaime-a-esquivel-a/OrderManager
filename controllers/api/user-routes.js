@@ -88,6 +88,7 @@ router.put('/:email', async (req, res) => {
                 where: {
                     email: req.params.email,
                 },
+                individualHooks: true
             });
             if (!updateUser[0]) {
                 res.status(404).json({message : "No user was found with that email in database"});

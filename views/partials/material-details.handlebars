@@ -1,75 +1,74 @@
-<tr id="tableContentmat">
+<tr id="tableContentmat-{{id}}">
     <th scope="row">{{id}}</th>
-    <td>{{sku}}</td>
+    <td id="SKUvalue-{{id}}">{{sku}}</td>
     <td>{{description}}</td>
     <td>{{stock}}</td>
     <td>{{uom}}</td>
     <td>{{price}}</td>
-    <!--id="btnModify"-->
+    <!--id="btnModifyMat"-->
     <td>
-        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#modal" id="btnModify"> 
+        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#UpdateMaterialModal-{{id}}" id="btnModifyMat-{{id}}"> 
             <i class="fa-solid fa-pen-to-square"></i>
         </button>
 
-
-
-        <!-- Modal id="modalModifyMat"-->
-        <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content" id="modalModifyMat">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="modal">Modify Material</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="mb-3 row">
-                <!-- SKU id="skuMat"-->
-                <label for="inputMaterialSKU" class="col-sm-2 col-form-label">Material SKU:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="skuMat">
+        <form class = "UpdateMaterial" data-index = "{{id}}">
+            <!-- Modal id="UpdateMaterialModal"-->
+            <div class="modal fade" id="UpdateMaterialModal-{{id}}" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" id="modalModify-{{id}}">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="modalModify-{{id}}">Modify Material</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3 row">
+                    <!-- SKU id="inputMaterialSKU"-->
+                    <label for="inputMaterialSKU-{{id}}" class="col-sm-2 col-form-label">Material SKU:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputMaterialSKU-{{id}}" value = "{{sku}}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                    <!-- Description id="inputDescMat"-->
+                    <label for="inputDescMat-{{id}}" class="col-sm-2 col-form-label" >Description:</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="inputDescMat-{{id}}" value = "{{description}}">
+                        </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <!-- Stock id="inputStockMat"-->
+                        <label for="inputStockMat-{{id}}" class="col-sm-2 col-form-label" >Stock:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputStockMat-{{id}}" value = "{{stock}}">
+                            </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <!-- UOM id="inputUomMatt"-->
+                        <label for="inputUomMat-{{id}}" class="col-sm-2 col-form-label" >Unit of Measure:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="inputUomMat-{{id}}" value = "{{uom}}">
+                            </div>
+                    </div>
+                    <div class="mb-3 row">
+                        <!-- Price id="inputPriceMat"-->
+                        <label for="inputPriceMat-{{id}}" class="col-sm-2 col-form-label">Price:</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"  id="inputPriceMat-{{id}}" value = "{{price}}">
+                            </div>
                     </div>
                 </div>
-                <div class="mb-3 row">
-                <!-- Description id="descMat"-->
-                <label for="inputDescMat" class="col-sm-2 col-form-label" >Description:</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="descMat">
-                    </div>
+                <div class="modal-footer">
+
+                    <!-- Button id="btnUpdateMat"-->
+                    <button type="submit" class="btn btn-primary" id="btnUpdateMat-{{id}}">Submit</button>
                 </div>
-                <div class="mb-3 row">
-                    <!-- Stock id="stockMat"-->
-                    <label for="inputStockMat" class="col-sm-2 col-form-label" >Stock:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="stockMat">
-                        </div>
-                </div>
-                <div class="mb-3 row">
-                    <!-- UOM id="uomMat"-->
-                    <label for="inputUomMat" class="col-sm-2 col-form-label" >Unit of Measure:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="uomMat">
-                        </div>
-                </div>
-                <div class="mb-3 row">
-                    <!-- Price id="priceMat"-->
-                    <label for="inputPriceMat" class="col-sm-2 col-form-label">Price:</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control"  id="priceMat">
-                        </div>
                 </div>
             </div>
-            <div class="modal-footer">
-
-                <!-- Button id="btnUpdateMat"-->
-                <button type="button" class="btn btn-primary" id="btnUpdateMat">Submit</button>
             </div>
-            </div>
-        </div>
-        </div>
-
-
-        <!-- Button id="btnDelete"-->
-        <button class="btn btn-danger fa-xs" type="submit" id="btnDelete"><i class="fa-solid fa-trash-can"></i></button>
+        </form>
+        <!-- Button id="btnDeleteMat"-->
+        <button class="btn btn-danger fa-xs deleteMaterial" type="button" id="btnDeleteMat-{{id}}" data-index = "{{id}}">
+            <i class="fa-solid fa-trash-can" id="iconDeleteMat-{{id}}" data-index = "{{id}}"></i></button>
     </td>
 </tr>
 <!-- table content-->
