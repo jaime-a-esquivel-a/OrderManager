@@ -1,0 +1,38 @@
+<tr id="tableContentUser-{{id}}">
+    <th scope="row" id="idValue-{{id}}">{{id}}</th>
+    <td>{{first_name}} {{last_name}}</td>
+    <td>{{name}}</td>
+    <td>{{date}}</td>
+    <td>
+        <span class="badge text-bg-secondary" id="status-{{id}}">{{status}}</span>
+    </td>
+    <td>
+        <!-- ViewOrder 
+        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#modalUser-{{id}}" id="btnView-{{id}}">
+            <i class="fa-solid fa-eye"></i>
+        </button>
+        
+        <div class="modal fade" id="modalUser-{{id}}" tabindex="-1" aria-labelledby="modalUser" aria-hidden="true">
+            <div class="modal-dialog modal-fullscreen">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h1 class="modal-title fs-5" id="modalUser-{{id}}">Order Detail</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body align-content-center">
+                    
+                </div>
+            </div>
+            </div>
+        </div>-->
+        
+        <!--id="btnModify"-->
+        <button type="button" class="btn btn-primary fa-xs" id="btnModify-{{id}}"> 
+            <i class="fa-solid fa-pen-to-square"></i>
+        </button>
+        <!-- Button id="btnDelete"-->
+        <button class="btn btn-danger fa-xs deleteOrder" type="button" id="btnDeleteUser-{{id}}"  data-index = "{{id}}">
+            <i class="fa-solid fa-trash-can"  data-index = "{{id}}"></i>
+            </button>
+    </td>
+</tr>
