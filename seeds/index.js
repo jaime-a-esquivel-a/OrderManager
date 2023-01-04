@@ -3,6 +3,8 @@ const seedUsers = require('./seeds-user');
 const seedClients = require('./seeds-client');
 const seedMaterials = require('./seeds-material');
 const seedOrderStatus = require('./seeds-orderstatus');
+const seedOrderHeaders = require('./seeds-orderheader');
+const seedOrderItems = require('./seeds-orderitem');
 const sequelize = require('../config/connection');
 
 const seedAll = async () => {
@@ -21,6 +23,12 @@ const seedAll = async () => {
 
     await seedOrderStatus();
     console.log('\n----- ORDER STATUS CREATED -----\n');
+
+    await seedOrderHeaders();
+    console.log('\n----- ORDER HEADER CREATED -----\n');
+
+    await seedOrderItems();
+    console.log('\n----- ORDER ITEM CREATED -----\n');
 
     //modelempty.sync();
   
