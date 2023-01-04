@@ -12,8 +12,16 @@ User.hasMany(OrderHeader, {
 });
 
 OrderHeader.belongsTo(User, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_id',
 });
+
+OrderStatus.hasMany(OrderHeader, {
+    foreignKey: 'status_id',
+  });
+
+OrderHeader.belongsTo(OrderStatus,{
+    foreignKey: 'status_id',
+})
 
 //--Client & OrderHeader
 
@@ -29,6 +37,7 @@ OrderHeader.belongsTo(Client, {
 
 OrderHeader.hasMany(OrderItem, {
     foreignKey: 'order_id',
+    onDelete: 'Cascade',
 });
 
 OrderItem.belongsTo(OrderHeader, {
@@ -40,11 +49,13 @@ OrderItem.belongsTo(OrderHeader, {
 OrderHeader.belongsToMany(Material,{
     through: OrderItem,
     foreignKey: 'order_id',
+    otherKey: 'material_id',
 });
 
 Material.belongsToMany(OrderHeader, {
     through: OrderItem,
     foreignKey: 'material_id',
+    otherKey: 'order_id',
 });
 
 module.exports = { User, Material, Client, OrderHeader, OrderStatus, OrderItem };
