@@ -1,0 +1,50 @@
+<div class="col ps-md-2 pt-2">
+    <div class="page-header ">
+        <div class="navbar navbar-expand-md px-0">
+            <div class="container-fluid">
+                <!--Page Title-->  
+                <h2>Order</h2>
+                <button class="navbar-toggler bg-light " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <hr class="mt-1">
+    <div class="d-flex mb-3">
+        <div class="p-2">
+            <!--Create Btn-->
+            <button type="button" class="btn btn-primary"  id="btnCreate"> 
+                <i class="fa-solid fa-circle-plus"></i><span class="ms-1 d-none d-sm-inline">Create</span>
+            </button>             
+        </div>
+        <div class="ms-auto p-2">
+        <form class="d-flex" role="search">
+            <!--id="inputSearch"--> 
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="inputSearch">
+            <!--id="btnSearch"--> 
+            <button class="btn btn-outline-primary" type="button" id="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-hover" id="TableUser">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">User</th>
+                <th scope="col">Client</th>
+                <th scope="col">Date</th>
+                <th scope="col">Status</th>
+                <th scope="col">Options</th>
+            </tr>
+            </thead>
+            <tbody class="align-self-center">
+                {{#each orders as |order|}}
+                {{> order-details}}
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

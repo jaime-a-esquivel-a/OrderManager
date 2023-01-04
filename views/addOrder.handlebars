@@ -1,0 +1,162 @@
+<div class="col ps-md-2 pt-2">
+    <div class="page-header ">
+        <div class="navbar navbar-expand-md   px-0">
+            <div class="container-fluid ">
+                <!--Page Title-->  
+                <h2>Create Order</h2>
+                <button class="navbar-toggler bg-light " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <hr class="mt-1">
+    <div class="container my-2">
+        <div class="row d-flex justify-content-center my-4">
+            <div class="col-md-9">
+                <div class="card mb-3">
+                    <div class="card-body bg-light">
+                        <h5>Purchase order number: <span class="text-primary">{{id}}</span> </h5>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0">Information order</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="col-md-8">
+                            <label for="inputUser" class="form-label" >User</label>
+                            <!--id="inputUser"--> 
+                            <select id="inputUser" class="form-select">
+                                <option selected>Select</option>
+                                    {{#each order.users as |user|}}
+                                        <option>{{first_name}} {{last_name}}</option>
+                                    {{/each}}
+                            </select>
+                        </div>
+                        <div class="col-md-8 mt-2 ">
+                            <label for="inputClient" class="form-label">Client</label>
+                            <!--id="inputClient"-->
+                            <select id="inputClient" class="form-select" >
+                                <option selected>Select</option>
+                                    {{#each order.clients as |client|}}
+                                        <option>{{name}}</option>
+                                    {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-4">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0">Add Material</h5>
+                    </div>
+                    <div class="card-body">
+                        <form class="d-flex" role="search">
+                            <!--id="inputSearch"--> 
+                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="inputSearch">
+                            <!--id="btnSearch"--> 
+                            <button class="btn btn-outline-primary" type="button" id="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </form>
+                        <div class="table-responsive¿ overflow-auto mt-3" style="max-height: 200px; width: 100%;">
+                            <!--<table class="table table-hover  " >
+                                <thead class="table-light">
+                                    <tr>
+                                        <th scope="col">SKU</th>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Stock</th>
+                                        <th scope="col">Option</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th >pgh234</th>
+                                        <td>Colorante para cemento de 1 kg. azul</td>
+                                        <td>Otto</td>
+                                        <td>
+                                            <button type="button" class="btn btn-primary fa-xs" id="btnAdd-{{id}}">
+                                                <i class="fa-solid fa-circle-plus"></i>
+                                            </button>
+                                        </td>
+                                    </tr>                                                                                                   
+                                </tbody>
+                            </table>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-2 " style="cursor: pointer;">
+                    <!--<div class="card-header py-3">
+                        <h5 class="mb-0">Cart </h5>
+                    </div>
+                    <div class="card-body overflow-auto " style="max-height: 450px;">
+                            Single item 
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12 col-sm12 mb-4 mb-lg-0 text-lg-center">
+                                    Data 
+                                <P class="my-0"><strong>Colorante para cemento de 1 kg. azul</strong></P>
+                                <p class="my-0">SKU: <span>PA0481</span></p>
+                                <p class="my-0">STOCK: <span>500</span></p>
+                                <p class="my-0">UOM: <span>KG</span></p>
+
+                                Data 
+                            </div>
+                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0 text-md-center text-sm-center">
+                                    Data 
+                                <p><strong>Quantity</strong></p>
+                                <div class="d-flex flex-row justify-content-md-center">
+                                    <button class="btn btn-link px-2"
+                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <input id="form1" min="0" name="quantity" value="2" type="number"
+                                        class="form-control form-control-sm" style="width: 60px;" />
+                                    <button class="btn btn-link px-2"
+                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                Data
+                            </div>
+                            <div class="col-lg-3 col-md-6 mb-1 mb-lg-0 text-md-center">
+                                    Data
+                                <p><strong>Price</strong></p>
+                                <p>19.22</p>
+                                    Data 
+                            </div>
+                            <div class="col-lg-1 col-md-12 mb-1 text-md-center">
+                                    Data 
+                                <button type="button" class="btn btn-danger btn-md mt-3"style="font-size:auto;" data-mdb-toggle="tooltip"
+                                title="Remove item">
+                                <i class="fas fa-trash"></i>
+                                </button>
+                                Data 
+                            </div>
+                        </div>
+                        <hr class="my-3" />
+                            Single item 
+                    </div>-->
+                </div>
+            </div>
+            <div class="col-md-3 ">
+                <div class="card mb-4 sticky-top">
+                    <div class="card-header py-3">
+                        <h5 class="mb-0">Summary</h5>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                                <strong>Total amount</strong>
+
+                                <span id="total"><strong>$53.98</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3"></li>
+                                
+                        </ul>
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" type="button" id="btnSubmit">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
