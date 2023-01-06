@@ -24,11 +24,17 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/chartdata', async (req, res) => {
+
     try {
+
+        let userIdvar = {};
+
+        if(req.session.username != 'Super User'){
+            userIdvar = {user_id: req.session.userid};
+        }
+
         const ordersData = await OrderHeader.findAll({
-            where:{
-                user_id: 4,
-            },
+            where: userIdvar,
             attributes: ["status_id",
                 [sequelize.fn("COUNT", sequelize.col("status_id")), "total"],
             ],
