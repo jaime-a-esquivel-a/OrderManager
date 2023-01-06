@@ -168,6 +168,8 @@ router.post('/login', async (req, res) => {
             req.session.super = true;
           }
           req.session.loggedIn = true;
+          req.session.username = dbUserData.first_name + ' ' + dbUserData.last_name;
+          req.session.userid = dbUserData.id;
           res
             .status(200)
             .json({ user: dbUserData, message: 'You are now logged in!' });

@@ -1,10 +1,10 @@
 <tr id="tableContentUser-{{id}}">
     <th scope="row" id="idValue-{{id}}">{{id}}</th>
-    <td>{{first_name}} {{last_name}}</td>
-    <td>{{name}}</td>
-    <td>{{date}}</td>
+    <td>{{user.first_name}} {{user.last_name}}</td>
+    <td>{{client.name}}</td>
+    <td>{{format_date date}}</td>
     <td>
-        <span class="badge text-bg-secondary" id="status-{{id}}">{{status}}</span>
+        <span class="badge text-bg-secondary" id="status-{{orderstatus.id}}">{{orderstatus.name}}</span>
     </td>
     <td>
         <!-- ViewOrder 

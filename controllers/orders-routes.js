@@ -1,3 +1,4 @@
+const { Op } = require("sequelize");
 const router = require('express').Router();
 const { OrderHeader, OrderItem, Material, User, Client, OrderStatus } = require('../models');
 
@@ -21,17 +22,46 @@ router.get('/header', async (req, res) => {
             res.status(404).json({message : "No orders found in database"});
             return;
         }
-        /*const orders = ordersData.map((order) =>
+        const orders = ordersData.map((order) =>
         order.get({ plain: true })
         );
-        res.render('orderheader', {
+        res.render('order', {
             orders,
             loggedIn: req.session.loggedIn
-        });*/
-        res.status(200).json(ordersData);
+        });
+        //res.status(200).json(ordersData);
     } catch (error){
         res.status(500).json(error);
     }
+});
+
+router.get('/addOrder', async (req, res) => {
+
+    try{
+
+        const clientsData = await Client.findAll({});
+
+        if(!clientsData){
+            res.status(404).json({message: "No clients found in database"});
+            return;
+        }
+
+        const clients = clientsData.map((client) =>
+            client.get({ plain: true })
+        );
+
+        res.render('addOrder', {
+            clients,
+            loggedIn: req.session.loggedIn,
+            username: req.session.username,
+            userid: req.session.userid,
+        });
+
+    }
+    catch (error){
+        res.status(500).json(error);
+    }
+
 });
 
 //Ruta para traer una orden incluyendo sus items
@@ -77,6 +107,9 @@ router.get('/:id', async (req, res) => {
 
 //Ruta para crear una nueva orden
 router.post('/', async (req, res) => {
+
+    console.log(req.body);
+
     try {
         const newOrder = await OrderHeader.create({
             user_id : req.body.user_id,
@@ -86,7 +119,12 @@ router.post('/', async (req, res) => {
         });
         const orderId = newOrder.dataValues.id;
         console.log(req.body.items);
-        const newOrderItems = await OrderItem.bulkCreate([{order_id:orderId, material_id:9, qty:50, price:50},{order_id:orderId, material_id:10, qty:50, price:50}], { returning: true});
+
+        req.body.items.forEach(item => {
+            item.order_id = orderId;
+        });
+        //const newOrderItems = await OrderItem.bulkCreate([{order_id:orderId, material_id:9, qty:50, price:50},{order_id:orderId, material_id:10, qty:50, price:50}], { returning: true});
+        const newOrderItems = await OrderItem.bulkCreate(req.body.items);
         res.status(200).json(newOrderItems);
     } catch (error) {
         res.status(500).json(error);
@@ -115,6 +153,50 @@ router.delete('/:id', async (req, res) => {
             return;
         }
         res.status(200).json(deleteOrder); 
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+//Ruta para ayudar a una orden a agregar materiales
+router.get('/materials/:sku', async (req, res) => {
+
+    try {
+        const materialsData = await Material.findAll({
+            where: {
+                sku : {
+                    [Op.substring]: req.params.sku
+                }
+            }
+        });
+
+        if (!materialsData) {
+            res.status(404).json({message : "No material was found with that SKU in database"});
+            return;
+        }
+
+       res.status(200).json(materialsData);
+
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+//Ruta para traer un material a la orden
+router.get('/onemat/:id', async (req, res) => {
+    try {
+        const materialData = await Material.findOne({
+            where: {
+                id : req.params.id
+            }
+        });
+        if (!materialData) {
+            res.status(404).json({message : "No material was found with that ID in database"});
+            return;
+        }
+
+        res.status(200).json(materialData);
+
     } catch (error) {
         res.status(500).json(error);
     }
