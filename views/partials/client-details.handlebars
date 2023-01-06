@@ -18,9 +18,10 @@
         <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#UpdateClientModal-{{id}}" id="btnModify-{{id}}"> 
             <i class="fa-solid fa-pen-to-square"></i>
         </button>
-        <form class = "UpdateClient" data-index = "{{id}}">
+        
             <!--Update Client Modal-->
             <div class="modal fade" id="UpdateClientModal-{{id}}" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+                <form class = "UpdateClient" data-index = "{{id}}">
                 <div class="modal-dialog">
                     <div class="modal-content" id="modalModify-{{id}}">
                         <div class="modal-header">
@@ -79,13 +80,15 @@
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
-        </form>
+        
 
-        <!--Delete Button-->
-        <button class="btn btn-danger fa-xs deleteClient" type="button" id="btnDeleteCl-{{id}}" data-index = "{{id}}">
-            <i class="fa-solid fa-trash-can" id="iconDeleteCl-{{id}}" data-index = "{{id}}"></i>
-        </button>
+            <!--Delete Button-->
+            <button class="btn btn-danger fa-xs deleteClient" type="button" id="btnDeleteCl-{{id}}" data-index = "{{id}}">
+                <i class="fa-solid fa-trash-can" id="iconDeleteCl-{{id}}" data-index = "{{id}}"></i>
+            </button>
+        
 
     </td>
 </tr>
