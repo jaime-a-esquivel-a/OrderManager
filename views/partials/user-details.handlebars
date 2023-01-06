@@ -16,9 +16,10 @@
         <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#UpdateUserModal-{{id}}" id="btnModify-{{id}}"> 
             <i class="fa-solid fa-pen-to-square"></i>
         </button>
-        <form class = "UpdateUser" data-index = "{{id}}">
+        
             <!-- Modal id="modalModify"-->
             <div class="modal fade bd-example-modal-lg" id="UpdateUserModal-{{id}}" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+            <form class = "UpdateUser" data-index = "{{id}}">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content" id="modalModify-{{id}}">
                 <div class="modal-header">
@@ -67,11 +68,13 @@
                 </div>
                 </div>
             </div>
+            </form>
             </div>
-        </form>
-        <!-- Button id="btnDelete"-->
-        <button class="btn btn-danger fa-xs deleteUser" type="button" id="btnDeleteUser-{{id}}" data-index = "{{id}}">
-            <i class="fa-solid fa-trash-can" id="iconDeleteUser-{{id}}" data-index = "{{id}}"></i></button>
+        
+            <!-- Button id="btnDelete"-->
+            <button class="btn btn-danger fa-xs deleteUser" type="button" id="btnDeleteUser-{{id}}" data-index = "{{id}}">
+                <i class="fa-solid fa-trash-can" id="iconDeleteUser-{{id}}" data-index = "{{id}}"></i></button>
+        
     </td>
 </tr>
 <!-- table content-->
