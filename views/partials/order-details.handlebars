@@ -4,7 +4,7 @@
     <td>{{client.name}}</td>
     <td>{{format_date date}}</td>
     <td>
-        <span class="badge text-bg-secondary" id="status-{{orderstatus.id}}">{{orderstatus.name}}</span>
+        <span class="badge text-bg-secondary" id="status-{{id}}" data-value="{{orderstatus.id}}">{{orderstatus.name}}</span>
     </td>
     <td>
         <!-- ViewOrder 
@@ -25,14 +25,22 @@
             </div>
             </div>
         </div>-->
-        
-        <!--id="btnModify"-->
-        <button type="button" class="btn btn-primary fa-xs" id="btnModify-{{id}}"> 
-            <i class="fa-solid fa-pen-to-square"></i>
-        </button>
-        <!-- Button id="btnDelete"-->
-        <button class="btn btn-danger fa-xs deleteOrder" type="button" id="btnDeleteUser-{{id}}"  data-index = "{{id}}">
-            <i class="fa-solid fa-trash-can"  data-index = "{{id}}"></i>
+        <a href="/order/{{id}}">
+            <!--id="btnModify"-->
+            <button type="button" class="btn btn-primary fa-xs" id="btnModify-{{id}}" data-toggle="tooltip" data-placement="top" title="Edit order"> 
+                <i class="fa-solid fa-pen-to-square"></i>
             </button>
+        </a>
+        <!-- Button id="btnDelete"-->
+        <button class="btn btn-danger fa-xs deleteOrder" type="button" id="btnDeleteUser-{{id}}"  data-index = "{{id}}" data-toggle="tooltip" data-placement="top" title="Delete order">
+            <i class="fa-solid fa-trash-can"  data-index = "{{id}}"></i>
+        </button>
+        {{#if (compare_status orderstatus.id) }}
+        <!-- Button id="btnNextStatus"-->
+        <button class="btn btn-success fa-xs nextStatus" type="button" id="btnNextStatus-{{id}}"  data-index = "{{id}}" data-toggle="tooltip" data-placement="top" title="Next status">
+            <i class="fa-solid fa-angles-right"  data-index = "{{id}}"></i>
+        </button>
+        {{/if}}
     </td>
 </tr>
+

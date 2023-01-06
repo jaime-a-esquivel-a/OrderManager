@@ -132,11 +132,17 @@ router.post('/', async (req, res) => {
 });
 
 //Ruta para actualizar/modificar una orden
-router.put('/', async (req, res) => {
+router.put('/:id', async (req, res) => {
     try {
-
+        const deletePrevItms = await OrderItem.destroy({
+            where: {
+                order_id: req.params.id,
+            },
+        });
+        const newItems = await OrderItem.bulkCreate(req.body.items);
+        res.status(200).json(newItems);
     } catch (error) {
-        
+        res.status(500).json(error);
     }
 });
 
@@ -201,5 +207,32 @@ router.get('/onemat/:id', async (req, res) => {
         res.status(500).json(error);
     }
 });
+
+//Ruta para actualizar el status en la orden
+router.put('/updatestatus/:id', async (req, res) => {
+    try {
+        const actualStatusId = req.body.status_id;
+        const nextStatusId = Number(actualStatusId) + 1;
+        req.body.status_id = nextStatusId;
+        console.log(req.body);
+        const updateOrder = await OrderHeader.update(req.body, {
+            where: {
+                id: req.params.id,
+            },
+        });
+
+        if(!updateOrder[0]){
+            res.status(404).json({message: "No order was found with that ID in database "});
+            return;
+        }
+
+        res.status(200).json(updateOrder);
+
+    } catch (error) {
+        res.status(500).json(error);
+    }
+});
+
+
 
 module.exports = router;
