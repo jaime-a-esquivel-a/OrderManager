@@ -4,8 +4,19 @@ const { OrderHeader, OrderItem, Material, User, Client, OrderStatus } = require(
 
 //Ruta para traer todas las órdenes (header)
 router.get('/header', async (req, res) => {
+
+    
+
     try{
+
+        let userIdvar = {};
+
+        if(req.session.username != 'Super User'){
+            userIdvar = {user_id: req.session.userid};
+        }
+
         const ordersData = await OrderHeader.findAll({
+            where: userIdvar,
             include:[
                 {
                     model: OrderStatus,
@@ -16,7 +27,7 @@ router.get('/header', async (req, res) => {
                 {
                     model: Client,
                 },
-            ]
+            ],
         });
         if (!ordersData){
             res.status(404).json({message : "No orders found in database"});
@@ -31,6 +42,46 @@ router.get('/header', async (req, res) => {
         });
         //res.status(200).json(ordersData);
     } catch (error){
+        res.status(500).json(error);
+    }
+});
+
+//Ruta para traer una orden incluyendo sus items
+router.get('/:id', async (req, res) => {
+    try {
+        const orderData = await OrderHeader.findOne({
+            where:{
+                id: req.params.id,
+            },
+            include:[
+                {
+                    model: OrderStatus,
+                },
+                {
+                    model: OrderItem,
+                },
+                {
+                    model: Material,
+                },
+                {
+                    model: User,
+                },
+                {
+                    model: Client,
+                },
+            ]
+        });
+        if (!orderData){
+            res.status(404).json({message : "No order was found in database with that id"});
+            return;
+        }
+        const order = orderData.get({ plain: true });
+        res.render('updateOrder', {
+            order,
+            loggedIn: req.session.loggedIn
+        });
+        //res.status(200).json(orderData);
+    } catch (error) {
         res.status(500).json(error);
     }
 });
