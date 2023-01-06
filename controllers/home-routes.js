@@ -1,20 +1,50 @@
 const router = require('express').Router();
+const sequelize = require('../config/connection');
+const OrderHeader = require ('../models/OrderHeader');
+const OrderStatus = require ('../models/OrderStatus');
 
 //Ruta de home/página de inicio
 router.get('/', async (req, res) => {
     try {
         if (!req.session.loggedIn){
             res.render('login', {loggedIn: req.session.loggedIn});
-        } else {
+        } else { 
             res.render('home', {loggedIn: req.session.loggedIn});
         }
         
-
     } catch (err) {
 
         console.log(err);
         res.status(500).json(err);
         
+    }
+});
+
+router.get('/chartdata', async (req, res) => {
+    try {
+        const ordersData = await OrderHeader.findAll({
+            where:{
+                user_id: 4,
+            },
+            attributes: ["status_id",
+                [sequelize.fn("COUNT", sequelize.col("status_id")), "total"],
+            ],
+            group: "status_id",
+            include:[
+                {
+                    model: OrderStatus,
+                },
+            ],
+        });
+        if (!ordersData){
+            res.status(404).json({message : "No orders found in database"});
+            return;
+        }
+        res.status(200).json(ordersData);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+            
     }
 });
 
