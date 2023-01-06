@@ -24,6 +24,30 @@ const OrderHeaderData = [
         client_id: 4,
         status_id: 1,
         date: 'January 06, 2022 17:00:00'
+    },
+    {
+        user_id: 4,
+        client_id: 4,
+        status_id: 2,
+        date: 'January 06, 2022 17:00:00'
+    },
+    {
+        user_id: 4,
+        client_id: 4,
+        status_id: 3,
+        date: 'January 06, 2022 17:00:00'
+    },
+    {
+        user_id: 4,
+        client_id: 4,
+        status_id: 3,
+        date: 'January 06, 2022 17:00:00'
+    },
+    {
+        user_id: 4,
+        client_id: 4,
+        status_id: 4,
+        date: 'January 06, 2022 17:00:00'
     }
 ];
 
