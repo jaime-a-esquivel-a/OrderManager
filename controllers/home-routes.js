@@ -9,7 +9,10 @@ router.get('/', async (req, res) => {
         if (!req.session.loggedIn){
             res.render('login', {loggedIn: req.session.loggedIn});
         } else { 
-            res.render('home', {loggedIn: req.session.loggedIn});
+            res.render('home', {
+                loggedIn: req.session.loggedIn,
+                username: req.session.username
+            });
         }
         
     } catch (err) {

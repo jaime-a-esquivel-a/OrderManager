@@ -11,14 +11,19 @@ async function createChart () {
 
 if(response.ok){
   let data = await response.json();
-  console.log(data);
+  let labelsData = [];
+  let dataSet = [];
+  for (let i = 0; i < data.length; i++){
+    labelsData.push(data[i].orderstatus.name);
+    dataSet.push(data[i].total);
+  }
   new Chart (canvasForChart, {
     type: 'doughnut',
     data: {
-        labels: ['Ordered', 'Build', 'Ready', 'In Transit', 'Delivered', 'Declined'],
+        labels: labelsData,
         datasets: [{
           label: 'Quantity',
-          data: [12, 19, 3, 5, 2, 3],
+          data: dataSet,
           borderWidth: 1
         }]
       },
