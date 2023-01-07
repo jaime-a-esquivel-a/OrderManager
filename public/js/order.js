@@ -1,5 +1,6 @@
 const deleteOrders = document.getElementsByClassName('deleteOrder');
 const nextStatusBtn = document.getElementsByClassName('nextStatus');
+const searchOrders = document.getElementById('btnSearch');
 
 async function deleteOrderHandler(event){
     const orderId = event.target.dataset.index;
@@ -39,7 +40,6 @@ async function nextStatusHandler(event){
     }
 }
 
-
 for (let i = 0; i < deleteOrders.length; i++){
     deleteOrders[i].addEventListener('click', deleteOrderHandler);
 }
@@ -47,3 +47,19 @@ for (let i = 0; i < deleteOrders.length; i++){
 for (let i = 0; i < nextStatusBtn.length; i++){
     nextStatusBtn[i].addEventListener('click', nextStatusHandler);
 }
+
+async function searchOrderHandler(event) {
+
+    event.preventDefault();
+    const id_status = document.getElementById('inputStatus').value;
+
+    if (id_status != '' ){
+        window.location.href = (`/order/status/${id_status}`);
+    }else{
+        window.location.href = (`/order/header/`);
+    }
+
+}
+
+// Add event handler for search bar
+searchOrders.addEventListener('click', searchOrderHandler);
