@@ -52,7 +52,7 @@ router.get('/header', async (req, res) => {
 });
 
 //Ruta para traer una orden incluyendo sus items
-router.get('/:id', async (req, res) => {
+router.get('/update/:id', async (req, res) => {
     try {
         const orderData = await OrderHeader.findOne({
             where:{
@@ -121,7 +121,7 @@ router.get('/addOrder', async (req, res) => {
 });
 
 //Ruta para traer una orden incluyendo sus items
-router.get('/:id', async (req, res) => {
+router.get('/display/:id', async (req, res) => {
     try {
         const orderData = await OrderHeader.findOne({
             where:{
@@ -190,6 +190,7 @@ router.post('/', async (req, res) => {
 //Ruta para actualizar/modificar una orden
 router.put('/:id', async (req, res) => {
     try {
+        console.log(req.body.items);
         const deletePrevItms = await OrderItem.destroy({
             where: {
                 order_id: req.params.id,

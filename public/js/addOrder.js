@@ -53,7 +53,7 @@ async function selectMaterial(idMaterial) {
 }
 
 function  displayMaterials(arrMaterials){
-
+    tabMaterials.innerHTML = '';
 
     // following code create table header:
     var _thead = document.createElement('thead');           //<thead class="table-light">
