@@ -58,7 +58,7 @@ async function selectMaterial(idMaterial) {
 }
 
 function  displayMaterials(arrMaterials){
-
+    tabMaterials.innerHTML = '';
 
     // following code create table header:
     var _thead = document.createElement('thead');           //<thead class="table-light">
@@ -200,7 +200,7 @@ function addMat(myMaterial){
     _strong5.textContent = 'Price';
     var _p6 = document.createElement('p');
     _p6.id = `prc-${myMaterial.id}`;
-    _p6.value = `${myMaterial.price}`;
+    _p6.dataset.value = `${myMaterial.price}`;
     _p6.textContent = `$ ${myMaterial.price}`;
 
     _divrow.append(_divprc);
@@ -238,7 +238,7 @@ function addQtyToItem(idMaterial){
     //console.log(idMaterial);
     //console.log(document.getElementById(`qty-${idMaterial}`).value);
 
-    const toAdd = document.getElementById(`qty-${idMaterial}`).value * document.getElementById(`prc-${idMaterial}`).value;
+    const toAdd = document.getElementById(`qty-${idMaterial}`).value * document.getElementById(`prc-${idMaterial}`).dataset.value;
 
     console.log(toAdd);
 
@@ -277,7 +277,7 @@ async function updateOrder(idOrder){
             order_id: idOrder,
             material_id: material,
             qty: document.getElementById(`qty-${material}`).value,
-            price: document.getElementById(`prc-${material}`).value,
+            price: document.getElementById(`prc-${material}`).dataset.value,
         };
 
         itmArr.push(itmObj);
