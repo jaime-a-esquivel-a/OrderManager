@@ -1,11 +1,9 @@
-const { Op } = require("sequelize");
+const { Op, where } = require("sequelize");
 const router = require('express').Router();
 const { OrderHeader, OrderItem, Material, User, Client, OrderStatus } = require('../models');
 
 //Ruta para traer todas las órdenes (header)
 router.get('/header', async (req, res) => {
-
-    
 
     try{
 
@@ -34,10 +32,17 @@ router.get('/header', async (req, res) => {
             return;
         }
         const orders = ordersData.map((order) =>
-        order.get({ plain: true })
+            order.get({ plain: true })
         );
+
+        const statusData = await OrderStatus.findAll({});
+        const statusplain = statusData.map((status) =>
+            status.get({ plain: true })
+        );
+
         res.render('order', {
             orders,
+            statusplain,
             loggedIn: req.session.loggedIn
         });
         //res.status(200).json(ordersData);
@@ -284,6 +289,55 @@ router.put('/updatestatus/:id', async (req, res) => {
     }
 });
 
+router.get('/status/:status', async (req, res) => {
 
+    try{
+
+        let whereConditions = {};
+
+        if(req.session.username != 'Super User'){
+            whereConditions = {user_id: req.session.userid};
+        }
+
+        whereConditions.status_id = req.params.status;
+
+        const ordersData = await OrderHeader.findAll({
+            where: whereConditions,
+            include:[
+                {
+                    model: OrderStatus,
+                },
+                {
+                    model: User,
+                },
+                {
+                    model: Client,
+                },
+            ],
+        });
+        if (!ordersData){
+            res.status(404).json({message : "No orders found in database"});
+            return;
+        }
+        const orders = ordersData.map((order) =>
+        order.get({ plain: true })
+        );
+
+        const statusData = await OrderStatus.findAll({});
+        const statusplain = statusData.map((status) =>
+            status.get({ plain: true })
+        );
+
+        res.render('order', {
+            orders,
+            statusplain,
+            loggedIn: req.session.loggedIn
+        });
+
+    }catch(error){
+        res.status(500).json(error);
+    }
+
+});
 
 module.exports = router;
