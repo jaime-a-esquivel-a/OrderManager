@@ -25,21 +25,29 @@
             </div>
             </div>
         </div>-->
-        <a href="/order/{{id}}">
-            <!--id="btnModify"-->
-            <button type="button" class="btn btn-primary fa-xs" id="btnModify-{{id}}" data-toggle="tooltip" data-placement="top" title="Edit order"> 
-                <i class="fa-solid fa-pen-to-square"></i>
-            </button>
+        <a href="/order/display/{{id}}" style="text-decoration:none;">
+                <!--id="btnDisplay"-->
+                <button type="button" class="btn btn-primary fa-xs" id="btnDisplay-{{id}}" data-toggle="tooltip" data-placement="top" title="Display order"> 
+                    <i class="fa-solid fa-eye"></i>
+                </button>
         </a>
-        <!-- Button id="btnDelete"-->
-        <button class="btn btn-danger fa-xs deleteOrder" type="button" id="btnDeleteUser-{{id}}"  data-index = "{{id}}" data-toggle="tooltip" data-placement="top" title="Delete order">
-            <i class="fa-solid fa-trash-can"  data-index = "{{id}}"></i>
-        </button>
-        {{#if (compare_status orderstatus.id) }}
-        <!-- Button id="btnNextStatus"-->
-        <button class="btn btn-success fa-xs nextStatus" type="button" id="btnNextStatus-{{id}}"  data-index = "{{id}}" data-toggle="tooltip" data-placement="top" title="Next status">
-            <i class="fa-solid fa-angles-right"  data-index = "{{id}}"></i>
-        </button>
+        {{#if (compare_editstatus orderstatus.id) }}
+            <a href="/order/update/{{id}}" style="text-decoration:none;">
+                <!--id="btnModify"-->
+                <button type="button" class="btn btn-primary fa-xs" id="btnModify-{{id}}" data-toggle="tooltip" data-placement="top" title="Edit order"> 
+                    <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+            </a>
+            <!-- Button id="btnDelete"-->
+            <button class="btn btn-danger fa-xs deleteOrder" type="button" id="btnDeleteUser-{{id}}"  data-index = "{{id}}" data-toggle="tooltip" data-placement="top" title="Delete order">
+                <i class="fa-solid fa-trash-can"  data-index = "{{id}}"></i>
+            </button>
+        {{/if}}
+        {{#if (compare_laststatus orderstatus.id) }}
+            <!-- Button id="btnNextStatus"-->
+            <button class="btn btn-success fa-xs nextStatus" type="button" id="btnNextStatus-{{id}}"  data-index = "{{id}}" data-toggle="tooltip" data-placement="top" title="Next status">
+                <i class="fa-solid fa-angles-right"  data-index = "{{id}}"></i>
+            </button>
         {{/if}}
     </td>
 </tr>
