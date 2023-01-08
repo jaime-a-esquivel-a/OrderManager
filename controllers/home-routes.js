@@ -2,6 +2,7 @@ const router = require('express').Router();
 const sequelize = require('../config/connection');
 const OrderHeader = require ('../models/OrderHeader');
 const OrderStatus = require ('../models/OrderStatus');
+const withAuth = require("../utils/auth");
 
 //Ruta de home/página de inicio
 router.get('/', async (req, res) => {
@@ -23,7 +24,16 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/chartdata', async (req, res) => {
+
+router.get('/login', (req, res) => {
+    if (req.session.loggedIn) { 
+      res.redirect('/'); 
+      return;
+    }
+    res.render('login');
+  });
+
+router.get('/chartdata', withAuth, async (req, res) => {
 
     try {
 
