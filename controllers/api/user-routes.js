@@ -69,6 +69,7 @@ router.post('/', withAuth, async (req, res) => {
         email: "jaanzaldo@hotmail.com",
         tel: 5519281738,
         password: "123456"
+        superuser: false,
     }
     */
     if (req.session.super){
@@ -79,6 +80,7 @@ router.post('/', withAuth, async (req, res) => {
                 email: req.body.email,
                 tel : req.body.tel,
                 password: req.body.password,
+                superuser: req.body.superuser,
             });
             res.status(200).json(newUser);
         } catch (error) {

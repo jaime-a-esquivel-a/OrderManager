@@ -16,11 +16,11 @@
         
         {{#if super}}
         <!--Modify Button-->
-        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#UpdateClientModal-{{id}}" id="btnModify-{{id}}"> 
+        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#UpdateClientModal-{{id}}" id="btnModify-{{id}}" data-toggle="tooltip" data-placement="top" title="Edit client"> 
             <i class="fa-solid fa-pen-to-square"></i>
         </button>
         <!--Delete Button-->
-        <button class="btn btn-danger fa-xs deleteClient" type="button" id="btnDeleteCl-{{id}}" data-index = "{{id}}">
+        <button class="btn btn-danger fa-xs deleteClient" type="button" id="btnDeleteCl-{{id}}" data-index = "{{id}}" data-toggle="tooltip" data-placement="top" title="Delete client">
             <i class="fa-solid fa-trash-can" id="iconDeleteCl-{{id}}" data-index = "{{id}}"></i>
         </button>
         

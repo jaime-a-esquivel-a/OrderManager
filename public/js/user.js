@@ -12,6 +12,7 @@ async function newUserHandler(event){
     const newUserEmail = document.getElementById('inputEmail').value;
     const newUserTel = document.getElementById('inputTel').value;
     const newUserPwd = document.getElementById('inputPassword').value;
+    const newUserSuper= document.getElementById('inputSuper').checked;
 
     const response = await fetch( '/api/users', {
         method: 'POST',
@@ -20,7 +21,8 @@ async function newUserHandler(event){
             last_name: newUserLN,
             email: newUserEmail,
             tel: newUserTel,
-            password: newUserPwd
+            password: newUserPwd,
+            superuser: newUserSuper,
         }),
         headers: {
             'Content-Type': 'application/json',
@@ -44,6 +46,7 @@ async function updateUserHandler(event){
         const updateUserEmail = document.getElementById(`inputEmail-${index}`).value;
         const updateUserTel = document.getElementById(`inputTel-${index}`).value;
         const updateUserPass = document.getElementById(`inputPassword-${index}`).value;
+        const updateUserSuper= document.getElementById(`inputSuper-${index}`).checked;
         let updateData;
 
         if (updateUserPass !== ""){
@@ -52,7 +55,8 @@ async function updateUserHandler(event){
                 last_name: updateUserLN,
                 email: updateUserEmail,
                 tel: updateUserTel,
-                password: updateUserPass
+                password: updateUserPass,
+                superuser: updateUserSuper,
                 }
         } else {
             updateData = {
@@ -60,6 +64,7 @@ async function updateUserHandler(event){
                 last_name: updateUserLN,
                 email: updateUserEmail,
                 tel: updateUserTel,
+                superuser: updateUserSuper,
                 }
         }
         
