@@ -9,7 +9,7 @@ router.get('/header', async (req, res) => {
 
         let userIdvar = {};
 
-        if(req.session.username != 'Super User'){
+        if(req.session.super != true){
             userIdvar = {user_id: req.session.userid};
         }
 
@@ -296,7 +296,7 @@ router.get('/status/:status', async (req, res) => {
 
         let whereConditions = {};
 
-        if(req.session.username != 'Super User'){
+        if(req.session.super != true){
             whereConditions = {user_id: req.session.userid};
         }
 

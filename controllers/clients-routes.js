@@ -17,9 +17,13 @@ router.get('/', async (req, res) => {
             client.get({ plain: true })
         );
 
+        for (let i =0; i < clients.length; i++){
+            clients[i].super = req.session.super;
+        }
         res.render('client', {
             clients,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            super: req.session.super,
         });
 
         //res.status(200).json(clientsData);

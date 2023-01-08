@@ -29,7 +29,7 @@ router.get('/chartdata', async (req, res) => {
 
         let userIdvar = {};
 
-        if(req.session.username != 'Super User'){
+        if(req.session.super != true){
             userIdvar = {user_id: req.session.userid};
         }
 
