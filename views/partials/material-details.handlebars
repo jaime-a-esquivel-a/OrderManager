@@ -1,5 +1,5 @@
 <tr id="tableContentmat-{{id}}">
-    <th scope="row">{{id}}</th>
+    <!--th scope="row">{{id}}</th-->
     <td id="SKUvalue-{{id}}">{{sku}}</td>
     <td>{{description}}</td>
     <td>{{stock}}</td>
@@ -7,15 +7,14 @@
     <td>{{price}}</td>
     <!--id="btnModifyMat"-->
     <td>
+        {{#if super}}
         <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#UpdateMaterialModal-{{id}}" id="btnModifyMat-{{id}}"> 
             <i class="fa-solid fa-pen-to-square"></i>
         </button>
-
-        
         <!-- Modal id="UpdateMaterialModal"-->
-        <div class="modal fade" id="UpdateMaterialModal-{{id}}" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="UpdateMaterialModal-{{id}}" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
             <form class = "UpdateMaterial" data-index = "{{id}}">
-                <div class="modal-dialog">
+                <div class="modal-dialog modal-lg">
                     <div class="modal-content" id="modalModify-{{id}}">
                         <div class="modal-header">
                             <h1 class="modal-title fs-5" id="modalModify-{{id}}">Modify Material</h1>
@@ -24,7 +23,7 @@
                         <div class="modal-body">
                                 <div class="mb-3 row">
                                 <!-- SKU id="inputMaterialSKU"-->
-                                <label for="inputMaterialSKU-{{id}}" class="col-sm-2 col-form-label">Material SKU:</label>
+                                <label for="inputMaterialSKU-{{id}}" class="col-sm-2 col-form-label">SKU:</label>
                                     <div class="col-sm-10">
                                         <input type="text" class="form-control" id="inputMaterialSKU-{{id}}" value = "{{sku}}">
                                     </div>
@@ -68,7 +67,9 @@
         </div>
         <!-- Button id="btnDeleteMat"-->
         <button class="btn btn-danger fa-xs deleteMaterial" type="button" id="btnDeleteMat-{{id}}" data-index = "{{id}}">
-        <i class="fa-solid fa-trash-can" id="iconDeleteMat-{{id}}" data-index = "{{id}}"></i></button>
+            <i class="fa-solid fa-trash-can" id="iconDeleteMat-{{id}}" data-index = "{{id}}"></i>
+        </button>
+        {{/if}}
     </td>
 </tr>
 <!-- table content-->

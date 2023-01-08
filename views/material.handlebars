@@ -13,13 +13,15 @@
     <hr class="mt-1">
     <div class="d-flex mb-3">
         <div class="p-2">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnCreate"> <!--Create Btn-->
-                <i class="fa-solid fa-circle-plus"></i><span class="ms-1 d-none d-sm-inline">Create</span>
-            </button>
+            {{#if super}}
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnCreate"> <!--Create Btn-->
+                    <i class="fa-solid fa-circle-plus"></i><span class="ms-1 d-none d-sm-inline">Create</span>
+                </button>
+            {{/if}}
             <!-- Modal id="modalMaterial"-->
             <form id = 'addMaterial-form'>
-                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content" id="modalMaterial">
                             <div class="modal-header">
                                 <h1 class="modal-title fs-5" id="exampleModalLabel">Create Material</h1>
@@ -85,8 +87,8 @@
         <table class="table table-hover" id = "TableMat">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">#</th>
-                <th scope="col">Material SKU</th>
+                <!--th scope="col">#</th-->
+                <th scope="col">SKU</th>
                 <th scope="col">Description</th>
                 <th scope="col">Stock</th>
                 <th scope="col">Unit of Measure</th>

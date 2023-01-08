@@ -13,9 +13,11 @@
     <hr class="mt-1">
     <div class="d-flex mb-3">
         <div class="p-2">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnCreate"> <!--Create Btn-->
-                <i class="fa-solid fa-circle-plus"></i><span class="ms-1 d-none d-sm-inline">Create</span>
-            </button>
+            {{#if super}}
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="btnCreate"> <!--Create Btn-->
+                    <i class="fa-solid fa-circle-plus"></i><span class="ms-1 d-none d-sm-inline">Create</span>
+                </button>
+            {{/if}}
             <!-- Modal id="modalUser"-->
             <form id='addUser-form'>
                 <div class="modal fade bd-example-modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -85,7 +87,7 @@
         <table class="table table-hover" id = "TableUser">
             <thead class="thead-dark">
             <tr>
-                <th scope="col">#</th>
+                <!--th scope="col">#</th-->
                 <th scope="col">First</th>
                 <th scope="col">Last</th>
                 <th scope="col">Email</th>

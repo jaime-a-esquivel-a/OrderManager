@@ -13,9 +13,13 @@ router.get('/', async (req, res) => {
         const materials = materialsData.map((material) =>
         material.get({ plain: true })
         );
+        for (let i =0; i < materials.length; i++){
+            materials[i].super = req.session.super;
+        }
         res.render('material', {
             materials,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            super: req.session.super,
         });
     } catch (error){
         res.status(500).json(error);

@@ -17,9 +17,13 @@ router.get('/', async (req, res) => {
             const users = usersData.map((user) =>
             user.get({ plain: true })
             );
+            for (let i =0; i < users.length; i++){
+                users[i].super = req.session.super;
+            }
             res.render('user', {
                 users,
-                loggedIn: req.session.loggedIn
+                loggedIn: req.session.loggedIn,
+                super : req.session.super,
             });
         }
         catch (error){
