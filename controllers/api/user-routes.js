@@ -1,13 +1,11 @@
 const { Op } = require("sequelize");
 const router = require('express').Router();
 const User = require ('../../models/User');
+const withAuth = require("../../utils/auth");
 
 
 //Ruta para traer todos los usuarios
-router.get('/', async (req, res) => {
-
-    if (req.session.loggedIn){
-
+router.get('/', withAuth, async (req, res) => {
         try{
             const usersData = await User.findAll({});
             if (!usersData){
@@ -29,17 +27,10 @@ router.get('/', async (req, res) => {
         catch (error){
             res.status(500).json(error);
         }
-
-    } else {
-        //res.render('login', {loggedIn: req.session.loggedIn});
-        //document.location.replace('../login');
-        //window.location.replace('/');
-    }
-
 });
 
 //Ruta para traer un usuario
-router.get('/:email', async (req, res) => {
+router.get('/:email', withAuth, async (req, res) => {
     try {
         const userData = await User.findAll({
             where: {
@@ -70,7 +61,7 @@ router.get('/:email', async (req, res) => {
 });
 
 //Ruta para crear un nuevo usuario (solo administrador)
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     /*req.body should look like this
     {
         first_name : "Jorge",
@@ -99,7 +90,7 @@ router.post('/', async (req, res) => {
 });
 
 //Ruta para actualizar/modificar un usuario (solo administrador)
-router.put('/:email', async (req, res) => {
+router.put('/:email', withAuth, async (req, res) => {
     if (req.session.super){
         try {
             const updateUser = await User.update(req.body, {
@@ -122,7 +113,7 @@ router.put('/:email', async (req, res) => {
 });
 
 //Ruta para eliminar un usuario (solo administrador)
-router.delete('/:email', async (req, res) => {
+router.delete('/:email', withAuth, async (req, res) => {
     if (req.session.super){
         try {
             const deleteUser = await User.destroy({

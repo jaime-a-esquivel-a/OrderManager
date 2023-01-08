@@ -1,9 +1,10 @@
 const { Op } = require("sequelize");
 const router = require('express').Router();
 const Client = require ('../models/Client');
+const withAuth = require("../utils/auth");
 
 //Ruta para traer todos los clientes
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
 
         const clientsData = await Client.findAll({});
@@ -34,7 +35,7 @@ router.get('/', async (req, res) => {
 });
 
 //Ruta para traer un cliente por email
-router.get('/email/:email', async (req, res) => {
+router.get('/email/:email', withAuth, async (req, res) => {
     try {
 
         const clientData = await Client.findOne({
@@ -56,7 +57,7 @@ router.get('/email/:email', async (req, res) => {
 });
 
 //Ruta para traer un cliente por RFC
-router.get('/rfc/:rfc', async (req, res) => {
+router.get('/rfc/:rfc', withAuth, async (req, res) => {
     try {
 
         const clientData = await Client.findAll({
@@ -89,66 +90,76 @@ router.get('/rfc/:rfc', async (req, res) => {
 });
 
 //Ruta para crear un nuevo cliente
-router.post('/', async (req, res) => {
-    try {
+router.post('/', withAuth, async (req, res) => {
+    if (req.session.super){
+        try {
+            const newClient = await Client.create({
+                rfc: req.body.rfc,
+                active: req.body.active,
+                name: req.body.name,
+                address: req.body.address,
+                tel: req.body.tel,
+                email: req.body.email,
+            });
 
-        const newClient = await Client.create({
-            rfc: req.body.rfc,
-            active: req.body.active,
-            name: req.body.name,
-            address: req.body.address,
-            tel: req.body.tel,
-            email: req.body.email,
-        });
+            res.status(200).json(newClient);
 
-        res.status(200).json(newClient);
-
-    } catch (error) {
-        res.status(500).json(error);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    } else {
+        res.json({message : "You don't have permission to create a client"})
     }
 });
 
 //Ruta para actualizar/modificar un cliente
-router.put('/:rfc', async (req, res) => {
-    try {
+router.put('/:rfc', withAuth, async (req, res) => {
+    if (req.session.super){
+        try {
+            const updateClient = await Client.update(req.body, {
+                where: {
+                    rfc: req.params.rfc,
+                },
+            });
 
-        const updateClient = await Client.update(req.body, {
-            where: {
-                rfc: req.params.rfc,
-            },
-        });
+            if(!updateClient[0]){
+                res.status(404).json({message: "No client was found with that rfc in database"});
+                return;
+            }
 
-        if(!updateClient[0]){
-            res.status(404).json({message: "No client was found with that rfc in database"});
-            return;
+            res.status(200).json(updateClient);
+
+        } catch (error) {
+            res.status(500).json(error);
         }
-
-        res.status(200).json(updateClient);
-
-    } catch (error) {
-        res.status(500).json(error);
+    } else {
+        res.json({message : "You don't have permission to modify a client"})
     }
 });
 
 //Ruta para eliminar un cliente
-router.delete('/:rfc', async (req, res) => {
-    try {
+router.delete('/:rfc', withAuth, async (req, res) => {
+    if (req.session.super){
+        try {
 
-        const deleteClient = await Client.destroy({
-            where: {
-                rfc: req.params.rfc,
-            },
-        });
+            const deleteClient = await Client.destroy({
+                where: {
+                    rfc: req.params.rfc,
+                },
+            });
 
-        if(!deleteClient){
-            res.status(404).json({message: "No client was found with that rfc in database"});
-            return;
+            if(!deleteClient){
+                res.status(404).json({message: "No client was found with that rfc in database"});
+                return;
+            }
+
+            res.status(200).json(deleteClient);
+
+        } catch (error) {
+            res.status(500).json(error);
         }
-
-        res.status(200).json(deleteClient);
-
-    } catch (error) {
-        res.status(500).json(error);
+    } else {
+        res.json({message : "You don't have permission to delete a client"})
     }
 });
 

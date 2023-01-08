@@ -1,9 +1,10 @@
 const { Op } = require("sequelize");
 const router = require('express').Router();
 const Material = require ('../models/Material');
+const withAuth = require("../utils/auth");
 
 //Ruta para traer todos los materiales
-router.get('/', async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try{
         const materialsData = await Material.findAll({});
         if (!materialsData){
@@ -27,7 +28,7 @@ router.get('/', async (req, res) => {
 });
 
 //Ruta para traer un material
-router.get('/:sku', async (req, res) => {
+router.get('/:sku', withAuth, async (req, res) => {
     try {
         const materialData = await Material.findAll({
             where: {
@@ -59,7 +60,7 @@ router.get('/:sku', async (req, res) => {
 
 
 //Ruta para crear un nuevo material
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
     /*req.body should look like this
     {
         sku: "CA3456",
@@ -69,54 +70,66 @@ router.post('/', async (req, res) => {
         price: 200.40
     }
     */
-    try {
-        const newMaterial = await Material.create({
-            sku : req.body.sku,
-            description : req.body.description,
-            stock : req.body.stock,
-            uom : req.body.uom,
-            price : req.body.price,
-        });
-        res.status(200).json(newMaterial);
-    } catch (error) {
-        res.status(500).json(error);
+    if (req.session.super){
+        try {
+            const newMaterial = await Material.create({
+                sku : req.body.sku,
+                description : req.body.description,
+                stock : req.body.stock,
+                uom : req.body.uom,
+                price : req.body.price,
+            });
+            res.status(200).json(newMaterial);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    } else {
+        res.json({message : "You don't have permission to create a material"})
     }
     
 });
 
 //Ruta para actualizar/modificar un material
-router.put('/:sku', async (req, res) => {
-    try {
-        const updateMaterial = await Material.update(req.body, {
-            where: {
-                sku: req.params.sku,
-            },
-        });
-        if (!updateMaterial[0]) {
-            res.status(404).json({message : "No material was found with that SKU in database"});
-            return;
+router.put('/:sku', withAuth, async (req, res) => {
+    if (req.session.super){
+        try {
+            const updateMaterial = await Material.update(req.body, {
+                where: {
+                    sku: req.params.sku,
+                },
+            });
+            if (!updateMaterial[0]) {
+                res.status(404).json({message : "No material was found with that SKU in database"});
+                return;
+            }
+            res.status(200).json(updateMaterial);
+        } catch (error) {
+            res.status(500).json(error);
         }
-        res.status(200).json(updateMaterial);
-    } catch (error) {
-        res.status(500).json(error);
+    } else {
+        res.json({message : "You don't have permission to update a material"})
     }
 });
 
 //Ruta para eliminar un material
-router.delete('/:sku', async (req, res) => {
-    try {
-        const deleteMaterial = await Material.destroy({
-            where : {
-                sku : req.params.sku,
-            },
-        });
-        if (!deleteMaterial) {
-            res.status(404).json({ message: 'No material was found with that SKU in database' });
-            return;
+router.delete('/:sku', withAuth, async (req, res) => {
+    if (req.session.super){
+        try {
+            const deleteMaterial = await Material.destroy({
+                where : {
+                    sku : req.params.sku,
+                },
+            });
+            if (!deleteMaterial) {
+                res.status(404).json({ message: 'No material was found with that SKU in database' });
+                return;
+            }
+            res.status(200).json(deleteMaterial); 
+        } catch (error) {
+            res.status(500).json(error);
         }
-        res.status(200).json(deleteMaterial); 
-    } catch (error) {
-        res.status(500).json(error);
+    } else {
+        res.json({message : "You don't have permission to delete a material"})
     }
 });
 

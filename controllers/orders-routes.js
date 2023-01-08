@@ -1,14 +1,13 @@
 const { Op, where } = require("sequelize");
 const router = require('express').Router();
 const { OrderHeader, OrderItem, Material, User, Client, OrderStatus } = require('../models');
+const withAuth = require("../utils/auth");
 
 //Ruta para traer todas las órdenes (header)
-router.get('/header', async (req, res) => {
+router.get('/header', withAuth, async (req, res) => {
 
     try{
-
         let userIdvar = {};
-
         if(req.session.super != true){
             userIdvar = {user_id: req.session.userid};
         }
@@ -52,7 +51,7 @@ router.get('/header', async (req, res) => {
 });
 
 //Ruta para traer una orden incluyendo sus items
-router.get('/update/:id', async (req, res) => {
+router.get('/update/:id', withAuth, async (req, res) => {
     try {
         const orderData = await OrderHeader.findOne({
             where:{
@@ -91,7 +90,7 @@ router.get('/update/:id', async (req, res) => {
     }
 });
 
-router.get('/addOrder', async (req, res) => {
+router.get('/addOrder', withAuth, async (req, res) => {
 
     try{
 
@@ -121,7 +120,7 @@ router.get('/addOrder', async (req, res) => {
 });
 
 //Ruta para traer una orden incluyendo sus items
-router.get('/display/:id', async (req, res) => {
+router.get('/display/:id', withAuth, async (req, res) => {
     try {
         const orderData = await OrderHeader.findOne({
             where:{
@@ -162,7 +161,7 @@ router.get('/display/:id', async (req, res) => {
 
 
 //Ruta para crear una nueva orden
-router.post('/', async (req, res) => {
+router.post('/', withAuth, async (req, res) => {
 
     console.log(req.body);
 
@@ -188,7 +187,7 @@ router.post('/', async (req, res) => {
 });
 
 //Ruta para actualizar/modificar una orden
-router.put('/:id', async (req, res) => {
+router.put('/:id', withAuth, async (req, res) => {
     try {
         console.log(req.body.items);
         const deletePrevItms = await OrderItem.destroy({
@@ -204,7 +203,7 @@ router.put('/:id', async (req, res) => {
 });
 
 //Ruta para eliminar una orden
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', withAuth, async (req, res) => {
     try {
         const deleteOrder = await OrderHeader.destroy({
             where : {
@@ -222,7 +221,7 @@ router.delete('/:id', async (req, res) => {
 });
 
 //Ruta para ayudar a una orden a agregar materiales
-router.get('/materials/:sku', async (req, res) => {
+router.get('/materials/:sku', withAuth, async (req, res) => {
 
     try {
         const materialsData = await Material.findAll({
@@ -246,7 +245,7 @@ router.get('/materials/:sku', async (req, res) => {
 });
 
 //Ruta para traer un material a la orden
-router.get('/onemat/:id', async (req, res) => {
+router.get('/onemat/:id', withAuth, async (req, res) => {
     try {
         const materialData = await Material.findOne({
             where: {
@@ -266,7 +265,7 @@ router.get('/onemat/:id', async (req, res) => {
 });
 
 //Ruta para actualizar el status en la orden
-router.put('/updatestatus/:id', async (req, res) => {
+router.put('/updatestatus/:id', withAuth, async (req, res) => {
     try {
         const actualStatusId = req.body.status_id;
         const nextStatusId = Number(actualStatusId) + 1;
@@ -290,7 +289,7 @@ router.put('/updatestatus/:id', async (req, res) => {
     }
 });
 
-router.get('/status/:status', async (req, res) => {
+router.get('/status/:status', withAuth, async (req, res) => {
 
     try{
 
