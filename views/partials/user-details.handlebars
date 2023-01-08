@@ -14,7 +14,7 @@
     <td>
     {{#if super}}
     <!--id="btnModify"-->
-        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#UpdateUserModal-{{id}}" id="btnModify-{{id}}"> 
+        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#UpdateUserModal-{{id}}" id="btnModify-{{id}}" data-toggle="tooltip" data-placement="top" title="Edit user"> 
             <i class="fa-solid fa-pen-to-square"></i>
         </button>
         
@@ -62,6 +62,19 @@
                                 <input type="password" class="form-control" id="inputPassword-{{id}}" placeholder="Type only if you want to change password">
                             </div>
                     </div>
+                    <!--Active super-->
+                    <div class="mb-3 row">
+                        <div class="input-group mb-3">
+                            <label for="inputSuper-{{id}}" class="col-sm-2 col-form-label">Super user:</label>
+                            <div class="input-group-prepend">
+                                {{#if superuser}}
+                                <input type="checkbox" id="inputSuper-{{id}}" checked>
+                                {{else}}
+                                <input type="checkbox" id="inputSuper-{{id}}" unchecked>
+                                {{/if}}
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <!-- Button id="btnUpdate"-->
@@ -73,7 +86,7 @@
             </div>
         
             <!-- Button id="btnDelete"-->
-            <button class="btn btn-danger fa-xs deleteUser" type="button" id="btnDeleteUser-{{id}}" data-index = "{{id}}">
+            <button class="btn btn-danger fa-xs deleteUser" type="button" id="btnDeleteUser-{{id}}" data-index = "{{id}}" data-toggle="tooltip" data-placement="top" title="Delete user">
                 <i class="fa-solid fa-trash-can" id="iconDeleteUser-{{id}}" data-index = "{{id}}"></i>
             </button>
         {{/if}}

@@ -8,7 +8,7 @@
     <!--id="btnModifyMat"-->
     <td>
         {{#if super}}
-        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#UpdateMaterialModal-{{id}}" id="btnModifyMat-{{id}}"> 
+        <button type="button" class="btn btn-primary fa-xs" data-bs-toggle="modal" data-bs-target="#UpdateMaterialModal-{{id}}" id="btnModifyMat-{{id}}" data-toggle="tooltip" data-placement="top" title="Edit material"> 
             <i class="fa-solid fa-pen-to-square"></i>
         </button>
         <!-- Modal id="UpdateMaterialModal"-->
@@ -66,7 +66,7 @@
             </form>
         </div>
         <!-- Button id="btnDeleteMat"-->
-        <button class="btn btn-danger fa-xs deleteMaterial" type="button" id="btnDeleteMat-{{id}}" data-index = "{{id}}">
+        <button class="btn btn-danger fa-xs deleteMaterial" type="button" id="btnDeleteMat-{{id}}" data-index = "{{id}}" data-toggle="tooltip" data-placement="top" title="Delete material">
             <i class="fa-solid fa-trash-can" id="iconDeleteMat-{{id}}" data-index = "{{id}}"></i>
         </button>
         {{/if}}
