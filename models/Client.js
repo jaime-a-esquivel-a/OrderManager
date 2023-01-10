@@ -1,8 +1,12 @@
+//Importar Model y DataTypes de sequelize
 const { Model, DataTypes } = require('sequelize');
+//Importar conexión de sequelize
 const sequelize = require('../config/connection');
 
+//Modelo Client extiende el Model de sequelize
 class Client extends Model {}
 
+//Definir columnas de la tabla client
 Client.init(
   {
     id: {
@@ -39,17 +43,18 @@ Client.init(
         }
     },
   },
+  //Definir opciones y hooks
   {
     hooks: {
 
-        beforeCreate: async (newClientData) => {
+        beforeCreate: async (newClientData) => { //Pasar el email a minúsculas cuando se crea un cliente
 
             newClientData.email = await newClientData.email.toLowerCase();
 
             return newClientData;
 
         },
-        beforeUpdate: async (updatedClientData) =>{
+        beforeUpdate: async (updatedClientData) =>{ //Pasar el email a minúsculas cuando se actualiza un cliente
 
             updatedClientData.email = await updatedClientData.email.toLowerCase();
 
@@ -67,4 +72,5 @@ Client.init(
   }
 );
 
+//Exportar modelo Client
 module.exports = Client;

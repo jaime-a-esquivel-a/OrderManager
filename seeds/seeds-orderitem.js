@@ -1,5 +1,7 @@
+//Importar modelo de OrderItem
 const { OrderItem } = require('../models');
 
+//Definir datos a llenar en la tabla orderitem
 const OrderItemData = [
     {
         order_id: 1,
@@ -52,6 +54,6 @@ const OrderItemData = [
     
 ];
 
-const seedOrderItems = () => OrderItem.bulkCreate(OrderItemData);
+const seedOrderItems = () => OrderItem.bulkCreate(OrderItemData); //Función para crear todas las entradas en la base de datos
 
-module.exports = seedOrderItems;
+module.exports = seedOrderItems; //Exportar función para crear seeds en la tabla de orderitem

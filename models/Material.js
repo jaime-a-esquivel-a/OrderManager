@@ -1,8 +1,12 @@
+//Importar Model y DataTypes de sequelize
 const { Model, DataTypes } = require('sequelize');
+//Importar conexión de sequelize
 const sequelize = require('../config/connection');
 
+//Modelo Material extiende el Model de sequelize
 class Material extends Model {}
 
+//Definir columnas de la tabla material
 Material.init(
   {
     id: {
@@ -32,6 +36,7 @@ Material.init(
         allowNull: false,
     },
   },
+  //Definir opciones
   {
     sequelize,
     timestamps: false,
@@ -41,4 +46,5 @@ Material.init(
   }
 );
 
+//Exportar modelo Material
 module.exports = Material;

@@ -1,3 +1,4 @@
+//Importar todos los modelos
 const User = require('./User');
 const Material = require('./Material');
 const Client = require('./Client');
@@ -6,7 +7,7 @@ const OrderItem = require('./OrderItem');
 const OrderStatus = require('./OrderStatus');
 
 
-// definitions for User & OrderHeader
+//Crear asociaciones entre User y OrderHeader
 User.hasMany(OrderHeader, {
   foreignKey: 'user_id',
 });
@@ -15,6 +16,7 @@ OrderHeader.belongsTo(User, {
     foreignKey: 'user_id',
 });
 
+//Crear asociaciones entre OrderStatus y OrderHeader
 OrderStatus.hasMany(OrderHeader, {
     foreignKey: 'status_id',
   });
@@ -23,8 +25,7 @@ OrderHeader.belongsTo(OrderStatus,{
     foreignKey: 'status_id',
 })
 
-//--Client & OrderHeader
-
+//Crear asociaciones entre Client y OrderHeader
 Client.hasMany(OrderHeader, {
     foreignKey: 'client_id',
 });
@@ -33,7 +34,7 @@ OrderHeader.belongsTo(Client, {
     foreignKey: 'client_id'
 });
 
-//-- OrderHeader & OrderItem
+//Crear asociaciones entre OrderHeader y OrderItem
 
 OrderHeader.hasMany(OrderItem, {
     foreignKey: 'order_id',
@@ -44,7 +45,7 @@ OrderItem.belongsTo(OrderHeader, {
     foreignKey: 'order_id',
 });
 
-//-- OrderHeader & Material
+//Crear asociaciones entre OrderHeader y Material
 
 OrderHeader.belongsToMany(Material,{
     through: OrderItem,
@@ -58,4 +59,5 @@ Material.belongsToMany(OrderHeader, {
     otherKey: 'order_id',
 });
 
+//Exportar todos los modelos con sus asociaciones
 module.exports = { User, Material, Client, OrderHeader, OrderStatus, OrderItem };
