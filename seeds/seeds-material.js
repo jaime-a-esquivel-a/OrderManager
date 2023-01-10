@@ -1,7 +1,8 @@
+//Importar modelo de Material
 const { Material } = require('../models');
 
+//Definir datos a llenar en la tabla material
 const materialData = [
-
     {
         sku: 'PA0481',
         description: 'Colorante para cemento de 1 kg. azul',
@@ -75,6 +76,6 @@ const materialData = [
     
 ];
 
-const seedMaterials = () => Material.bulkCreate(materialData);
+const seedMaterials = () => Material.bulkCreate(materialData); //Función para crear todas las entradas en la base de datos
 
-module.exports = seedMaterials;
+module.exports = seedMaterials; //Exportar función para crear seeds en la tabla de material

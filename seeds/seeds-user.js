@@ -1,8 +1,10 @@
+//Importar bcrypt
 const bcrypt = require('bcrypt');
+//Importar modelo de User
 const { User } = require('../models');
 
+//Definir datos a llenar en la tabla user
 const userData = [
-
     {
         first_name: 'Jaime',
         last_name:  'Esquivel',
@@ -38,9 +40,9 @@ const userData = [
 
 ];
 
-const seedUsers = () => User.bulkCreate(userData, {
-    individualHooks: true,
+const seedUsers = () => User.bulkCreate(userData, { //Función para crear todas las entradas en la base de datos 
+    individualHooks: true, //Incluir hooks para pasar el email a minúsculas y hacer hash de la contraseña
     returning: true,
 });
 
-module.exports = seedUsers;
+module.exports = seedUsers; //Exportar función para crear seeds en la tabla de user

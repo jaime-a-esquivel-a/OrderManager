@@ -1,5 +1,7 @@
+//Importar modelo de Client
 const { Client } = require('../models');
 
+//Definir datos a llenar en la tabla client
 const ClientData = [
     {
         rfc: 'ICA990101NW4',
@@ -44,6 +46,6 @@ const ClientData = [
 
 ];
 
-const seedClients = () => Client.bulkCreate(ClientData);
+const seedClients = () => Client.bulkCreate(ClientData); //Función para crear todas las entradas en la base de datos
 
-module.exports = seedClients;
+module.exports = seedClients; //Exportar función para crear seeds en la tabla de client

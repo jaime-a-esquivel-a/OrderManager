@@ -1,5 +1,7 @@
+//Importar modelo de OrderHeader
 const { OrderHeader } = require('../models');
 
+//Definir datos a llenar en la tabla orderheader
 const OrderHeaderData = [
     {
         user_id: 1,
@@ -51,6 +53,6 @@ const OrderHeaderData = [
     }
 ];
 
-const seedOrderHeaders = () => OrderHeader.bulkCreate(OrderHeaderData);
+const seedOrderHeaders = () => OrderHeader.bulkCreate(OrderHeaderData); //Función para crear todas las entradas en la base de datos
 
-module.exports = seedOrderHeaders;
+module.exports = seedOrderHeaders; //Exportar función para crear seeds en la tabla de orderheader

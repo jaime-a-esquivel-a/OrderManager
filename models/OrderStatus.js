@@ -1,8 +1,12 @@
+//Importar Model y DataTypes de sequelize
 const { Model, DataTypes } = require('sequelize');
+//Importar conexión de sequelize
 const sequelize = require('../config/connection');
 
+//Modelo OrderStatus extiende el Model de sequelize
 class OrderStatus extends Model {}
 
+//Definir columnas de la tabla orderstatus 
 OrderStatus.init(
   {
     id: {
@@ -16,6 +20,7 @@ OrderStatus.init(
         allowNull: false,
     },
   },
+  //Definir opciones
   {
     sequelize,
     timestamps: false,
@@ -25,4 +30,5 @@ OrderStatus.init(
   }
 );
 
+//Exportar modelo OrderStatus
 module.exports = OrderStatus;
