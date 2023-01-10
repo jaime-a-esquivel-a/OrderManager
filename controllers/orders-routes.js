@@ -144,16 +144,19 @@ router.get('/display/:id', withAuth, async (req, res) => {
                 },
             ]
         });
-        if (!orderData){
+        /*if (!orderData){
             res.status(404).json({message : "No order was found in database with that id"});
             return;
-        }
-        /*const order = orderData.get({ plain: true });
-        res.render('orderdetail', {
+        }*/
+
+        const order = orderData.get({ plain: true });
+        res.render('displayOrder', {
             order,
             loggedIn: req.session.loggedIn
-        });*/
-        res.status(200).json(orderData);
+        });
+
+        //res.status(200).json(orderData);
+
     } catch (error) {
         res.status(500).json(error);
     }

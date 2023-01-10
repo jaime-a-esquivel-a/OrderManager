@@ -3,7 +3,7 @@
         <div class="navbar navbar-expand-md   px-0">
             <div class="container-fluid ">
                 <!--Page Title-->  
-                <h2>Update Order ORD-{{order.id}}</h2>
+                <h2>Display Order ORD-{{order.id}}</h2>
                 <button class="navbar-toggler bg-light " type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -43,48 +43,25 @@
                         </div>
                     </div>
                 </div>
-                <div class="card mb-4">
+                <!--div class="card mb-4">
                     <div class="card-header py-3">
                         <h5 class="mb-0">Add Material</h5>
                     </div>
                     <div class="card-body">
                         <form class="d-flex" role="search">
-                            <!--id="inputSearch"--> 
+                           
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="inputSearch">
-                            <!--id="btnSearch"--> 
+                         
                             <button class="btn btn-outline-primary" type="button" id="btnSearch"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </form>
                         <div class="table-responsive¿ overflow-auto mt-3" style="max-height: 200px; width: 100%;">
                             <table class="table table-hover" id="addMatTab">
 
-                                <!--
-                                //The following code is created automatically, leave just as reference of what will be inserted
-                                <thead class="table-light">
-                                    <tr>
-                                        <th scope="col">SKU</th>
-                                        <th scope="col">Description</th>
-                                        <th scope="col">Stock</th>
-                                        <th scope="col">Option</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <th >pgh234</th>
-                                        <td>Colorante para cemento de 1 kg. azul</td>
-                                        <td>Otto</td>
-                                        <td>
-                                            <button type="button" class="btn btn-primary fa-xs" id="btnAdd-{{id}}" onclick="addMat({{id}})">
-                                                <i class="fa-solid fa-circle-plus"></i>
-                                            </button>
-                                        </td>
-                                    </tr>                                                                                                   
-                                </tbody
-                                -->
 
                             </table>
                         </div>
                     </div>
-                </div>
+                </div-->
                 <div class="card mb-2 " style="cursor: pointer;">
                     <div class="card-header py-3">
                         <h5 class="mb-0">Materials list</h5>
@@ -101,28 +78,17 @@
                             </div>
                             <div class="col-lg-3 col-md-12 mb-4 mb-lg-0 text-md-center text-sm-center">
                                 <p><strong>Quantity</strong></p>
-                                <div class="d-flex flex-row justify-content-md-center">
-                                    <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown();calculateTotal();">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                    <input id="qty-{{material.id}}" oninput="calculateTotal()" min="0" name="quantity" value="{{material.orderitem.qty}}" type="number"
-                                        class="form-control form-control-sm" style="width: 60px;" />
-                                    <button class="btn btn-link px-2"
-                                        onclick="this.parentNode.querySelector('input[type=number]').stepUp();calculateTotal();">
-                                        <i class="fas fa-plus"></i>
-                                    </button>
-                                </div>
+                                <p id="qty-{{material.id}}" data-value="{{material.orderitem.qty}}">{{material.orderitem.qty}}</p>
                             </div>
                             <div class="col-lg-3 col-md-6 mb-1 mb-lg-0 text-md-center">
                                 <p><strong>Price</strong></p>
                                 <p id="prc-{{material.id}}" data-value="{{material.orderitem.price}}">$ {{material.orderitem.price}}</p>
                             </div>
                             <div class="col-lg-1 col-md-12 mb-1 text-md-center">
-                                <button type="button" onclick="deleteItm({{material.id}})" class="btn btn-danger btn-md mt-3"style="font-size:auto;" data-mdb-toggle="tooltip"
+                                <!--button type="button" onclick="deleteItm({{material.id}})" class="btn btn-danger btn-md mt-3"style="font-size:auto;" data-mdb-toggle="tooltip"
                                 title="Remove item">
                                     <i class="fas fa-trash"></i>
-                                </button>
+                                </button-->
                             </div>
                         </div>
                         {{/each}}
@@ -146,7 +112,7 @@
                                 
                         </ul>
                         <div class="d-grid gap-2">
-                            <button class="btn btn-primary" type="button" id="btnSubmit" onclick="updateOrder({{order.id}})">Submit</button>
+                            <!--button class="btn btn-primary" type="button" id="btnSubmit" onclick="updateOrder({{order.id}})">Submit</button-->
                         </div>
                     </div>
                 </div>
@@ -162,4 +128,4 @@
     {{/each}}
 
 </script>
-<script src='/js/updateOrder.js'></script>
+<script src='/js/displayOrder.js'></script-->
