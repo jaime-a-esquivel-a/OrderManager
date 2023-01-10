@@ -1,8 +1,9 @@
-const Sequelize = require('sequelize');
+//Inicializar sequelize
+let Sequelize = require('sequelize');
+//Importar dotenv y configurarlo
 require('dotenv').config();
 
-let sequelize;
-
+//Crear nueva conexión usando las variables de entorno
 if (process.env.JAWSDB_URL) {
   sequelize = new Sequelize(process.env.JAWSDB_URL);
 } else {
@@ -18,4 +19,5 @@ if (process.env.JAWSDB_URL) {
   );
 }
 
+//Exportar conexión
 module.exports = sequelize;
