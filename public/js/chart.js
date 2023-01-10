@@ -1,6 +1,5 @@
 const canvasForChart = document.getElementById("Chart");
 
-
 async function createChart () {
   const response  = await fetch( '/chartdata', {
     method: 'GET',
@@ -9,34 +8,37 @@ async function createChart () {
     },
   });
 
-if(response.ok){
-  let data = await response.json();
-  let labelsData = [];
-  let dataSet = [];
-  for (let i = 0; i < data.length; i++){
-    labelsData.push(data[i].orderstatus.name);
-    dataSet.push(data[i].total);
+  if(response.ok){
+    let data = await response.json();
+    let labelsData = [];
+    let dataSet = [];
+    for (let i = 0; i < data.length; i++){
+      labelsData.push(data[i].orderstatus.name);
+      dataSet.push(data[i].total);
+    }
+    new Chart (canvasForChart, {
+      type: 'doughnut',
+      data: {
+          labels: labelsData,
+          datasets: [{
+            label: 'Quantity',
+            data: dataSet,
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+        }
+      }); 
+  }else{
+    alert('Error when getting data for chart');
   }
-  new Chart (canvasForChart, {
-    type: 'doughnut',
-    data: {
-        labels: labelsData,
-        datasets: [{
-          label: 'Quantity',
-          data: dataSet,
-          borderWidth: 1
-        }]
-      },
-      options: {
-      }
-    }); 
-}else{
-  alert('Error when getting data for chart');
-}
 
-  
 }
 
 createChart();
+
+
 
 
