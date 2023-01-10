@@ -38,7 +38,7 @@
                             <div class="mb-3 row">
                                 <label for="inputRFC-{{id}}" class="col-sm-2 col-form-label">RFC:</label>
                                 <div class="col-sm-10">
-                                    <input type="text" class="form-control" id="inputRFC-{{id}}" value="{{rfc}}">
+                                    <input disabled type="text" class="form-control" id="inputRFC-{{id}}" value="{{rfc}}">
                                 </div>
                             </div>
                             <!--Active flag-->
@@ -46,7 +46,11 @@
                                 <div class="input-group mb-3">
                                     <label for="inputActive-{{id}}" class="col-sm-2 col-form-label">Active:</label>
                                     <div class="input-group-prepend">
-                                        <input type="checkbox" id="inputActive-{{id}}" checked="{{active}}">
+                                        {{#if active}}
+                                        <input type="checkbox" id="inputActive-{{id}}" checked>
+                                        {{else}}
+                                        <input type="checkbox" id="inputActive-{{id}}" unchecked>
+                                        {{/if}}
                                     </div>
                                 </div>
                             </div>
