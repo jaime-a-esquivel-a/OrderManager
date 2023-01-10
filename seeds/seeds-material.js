@@ -12,7 +12,7 @@ const materialData = [
     {
         sku: 'PG3167',
         description: 'Cemento Transparente Extra Reforzado para PVC de 8oz',
-        stock: '850',
+        stock: 850.13,
         uom: 'OZ',
         price: 230.80,
     },

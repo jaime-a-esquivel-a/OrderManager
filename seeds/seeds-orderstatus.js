@@ -20,9 +20,6 @@ const orderStatusData = [
     {
         name: 'Delivered',
     },
-    {
-        name: 'Declined',
-    },
 
 ];
 

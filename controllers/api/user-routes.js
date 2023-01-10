@@ -49,10 +49,13 @@ router.get('/:email', withAuth, async (req, res) => {
         const users = userData.map((user) =>
             user.get({ plain: true })
         );
-
+        for (let i =0; i < users.length; i++){
+            users[i].super = req.session.super;
+        }
         res.render('user', {
             users,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            super: req.session.super,
         });
 
     } catch (error) {

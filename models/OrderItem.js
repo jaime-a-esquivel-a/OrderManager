@@ -26,11 +26,11 @@ OrderItem.init(
             }
         },
         qty: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.FLOAT,
             allowNull: false,
         },
         price: {
-            type: DataTypes.DECIMAL,
+            type: DataTypes.FLOAT,
             allowNull: false,
         },
     },
