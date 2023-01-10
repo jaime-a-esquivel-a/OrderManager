@@ -40,7 +40,9 @@
                             <select id="inputClient" class="form-select" >
                                 <option value="0" selected>Select</option>
                                     {{#each clients as |client|}}
+                                        {{#if active}}
                                         <option value="{{id}}">{{name}}</option>
+                                        {{/if}}
                                     {{/each}}
                             </select>
                         </div>
