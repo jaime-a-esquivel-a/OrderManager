@@ -47,10 +47,13 @@ router.get('/:sku', withAuth, async (req, res) => {
         const materials = materialData.map((material) =>
             material.get({ plain: true })
         );
-
+        for (let i =0; i < materials.length; i++){
+            materials[i].super = req.session.super;
+        }
         res.render('material', {
             materials,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            super: req.session.super,
         });
 
     } catch (error) {

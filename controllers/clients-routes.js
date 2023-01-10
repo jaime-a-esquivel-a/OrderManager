@@ -48,7 +48,7 @@ router.get('/email/:email', withAuth, async (req, res) => {
             res.status(404).json({message: "No client was found with that email in database"});
             return;
         }
-
+        
         res.status(200).json(clientData);
 
     } catch (error) {
@@ -79,9 +79,14 @@ router.get('/rfc/:rfc', withAuth, async (req, res) => {
             client.get({ plain: true })
         );
 
+        for (let i =0; i < clients.length; i++){
+            clients[i].super = req.session.super;
+        }
+
         res.render('client', {
             clients,
-            loggedIn: req.session.loggedIn
+            loggedIn: req.session.loggedIn,
+            super: req.session.super,
         });
 
     } catch (error) {
