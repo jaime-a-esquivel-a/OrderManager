@@ -330,7 +330,7 @@ function calculateTotal(){
 
     });
 
-    document.getElementById('orderTotal').textContent = '$ ' + total;
+    document.getElementById('orderTotal').textContent = '$ ' + total.toFixed(2);
 
 }
 
