@@ -1,13 +1,13 @@
 # OrderManager
 
-Es una aplicación de gestión de ordenes de venta de materiales, que permite registrar, supervisar y gestionar las órdenes  llevando un control administrativo de todo el proceso de venta.
+Es una aplicación de gestión de órdenes de venta de materiales, que permite registrar, supervisar y gestionar las órdenes llevando un control administrativo de todo el proceso de venta.
 
 - Administración de usuarios (crear, visualizar, modificar y borrar).
 - Administración de clientes (crear, visualizar, modificar y borrar).
 - Administración de materiales (crear, visualizar, modificar y borrar).
-- Administracion de ordenes de venta.
-     - Dashboard de ordenes (gráfico por status).
-     - Seguimiento de ordenes (order to cash).
+- Administracion de órdenes de venta.
+     - Dashboard de órdenes (gráfico por status).
+     - Seguimiento de órdenes (order to cash).
      - Crear, visualizar, modificar y borrar.
 
 ---
@@ -87,6 +87,88 @@ Es una aplicación de gestión de ordenes de venta de materiales, que permite re
     * Llenar la información que desea modificar de la siguiente pantalla (no será posible modificar RFC del cliente) y dar click en el botón "Submit" para actualizarla.
 
     <img src="./public/images/ModificarCliente.png" alt="Modificar cliente" width="800" height="500">
+
+### Sección de Materiales
+
+<img src="./public/images/SeccionMateriales.JPG" alt="Sección Materiales" width="900" height="500"/>  
+
+* La sección de materiales se accede mediante el menú izquierdo y permite visualizar, actualizar y eliminar los materiales que se encuentran en la base de datos, así como crear nuevos materiales.
+* La creación, actualización y eliminación de materiales solo está permitida para aquellos usuarios que sean super users.
+* Cada uno de los materiales puede ser modificado o eliminado.
+* \* Para buscar un material:
+    * Se puede introducir el SKU completo del material o únicamente parte de él. Si se coloca una parte del SKU, la aplicación buscará todas las coincidencias con ese SKU parcial y devolverá los materiales correspondientes al usuario.
+    * Si se deja vacío el campo de búsqueda y se presiona el botón de Buscar, entonces la aplicación regresará todos los materiales en la base de datos.
+
+### Crear un material
+
+* Para crear un material es necesario:
+    * Presionar el botón de Create en la sección de Materiales.
+    * Llenar toda la información del formulario y presionar el botón Submit.
+        * Los campos de Stock y Price permiten números con punto decimal.  
+    <img src="./public/images/CrearMaterial.JPG" alt="Crear Material" width="600" height="400"/>    
+
+### Actualizar un material
+
+* Para actualizar un material es necesario:
+    * Presionar el botón de Editar/Actualizar en la línea del material a modificar en la sección de Materiales.
+    * Modificar la información en el formulario y presionar el botón Submit.
+        * No es posible modificar el SKU del material.    
+<img src="./public/images/ActualizarMaterial.JPG" alt="Actualizar Material" width="600" height="400"/>    
+
+### Sección de Órdenes
+
+<img src="./public/images/SeccionOrdenes.JPG" alt="Sección Órdenes" width="900" height="500"/>      
+
+* La sección de órdenes se accede mediante el menú izquierdo y permite visualizar, actualizar y eliminar las órdenes que se encuentran en la base de datos, así como crear nuevas órdenes y modificar el status de la orden.
+* Esta sección solamente da acceso a las órdenes creadas por el usuario que ha iniciado sesión. 
+* Si ha iniciado sesión un super user, entonces tendrá acceso a todas las órdenes de la base de datos.
+* Cada uno de las órdenes puede ser visualizada, modificada o eliminada.
+* \* Para buscar una orden:
+    * Hay que seleccionar un status del menú desplegable y presionar el botón de Buscar.
+    * Si no se selecciona una opción del menú desplegable o se selecciona la opción All y después se presiona el botón de Buscar, entonces se muestran órdenes de todos los status disponibles para el usuario.
+* \*\* Cambio de status de una orden:
+    * La orden puede cambiar de status desde Quotation hasta Delivered al presionar el botón para mover el status hacia adelante.
+    * Cuando se llega al status Delivered, entonces el bóton para mover el status desaparece.
+    * Cuando la orden cambia de status a Ready, entonces ya no será posible editar o borrar la orden y los botones correspondientes desaparecerán. 
+
+### Crear una orden
+
+* Para crear una orden es necesario:
+    * Presionar el botón de Create en la sección de Órdenes.
+    * Llenar toda la información de la siguiente pantalla y presionar el botón Submit.  
+<img src="./public/images/CreacionOrden.JPG" alt="Crear Orden" width="900" height="500"/>  
+
+* Esta pantalla permite:
+    * Crear una orden para el usuario conectado, por lo que no es posible mover el user.
+    * Seleccionar un cliente activo en la base de datos.
+    * \*Buscar materiales para agregar a la orden:
+        * Se puede introducir el SKU completo del material o únicamente parte de él. Si se coloca una parte del SKU, la aplicación buscará todas las coincidencias con ese SKU parcial y devolverá los materiales correspondientes al usuario.
+        * Si se deja vacío el campo de búsqueda y se presiona el botón de Buscar, entonces la aplicación regresará todos los materiales en la base de datos.
+    * Agregar materiales a la orden:
+        * Cada material encontrado en la búsqueda posee un botón para ser agregado a la orden.
+        * Al presionar el botón para agregar el material, dicho material aparecerá en la sección inferior.
+    * Eliminar materiales agregados a la orden.
+    * Modificar la cantidad del material agregado.
+    * \*\* Cuando se agregan, eliminan materiales y/o cuando se cambia la cantidad de uno o múltiples materiales, la cantidad total de la orden se actualiza en el momento.
+
+### Actualizar una orden
+
+* Para actualizar una orden es necesario:
+    * Presionar el botón de Editar/Actualizar en la línea de la orden a modificar en la sección de Órdenes.
+    * Modificar la información de la siguiente pantalla y presionar Submit.  
+
+    <img src="./public/images/ActualizarOrden.JPG" alt="Actualizar Orden" width="900" height="500"/>  
+
+* En esta pantalla se podrá visualizar toda la información actual de la orden, junto con sus materiales, cantidades y total.
+* Al actualizar la orden no será posible modificar el user ni el cliente.
+* Esta pantalla permite:
+    * Buscar materiales para ser agregados a la orden.
+    * Agregar nuevos materiales.
+    * Modificar la cantidad de materiales previos y nuevos.
+    * Eliminar materiales previos y nuevos.
+* Cuando se agregan, eliminan materiales y/o cuando se cambia la cantidad de uno o múltiples materiales, la cantidad total de la orden se actualiza en el momento.
+
+
 
 ---
  ## Instalación
