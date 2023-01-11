@@ -1,14 +1,21 @@
 const searchMaterials = document.getElementById('btnSearch');
 const tabMaterials = document.getElementById('addMatTab');
 const lstMaterials = document.getElementById('lstMat');
-//const lstMat = [];
 
+/*
+- When order info is loaded calculateTotal() is called to calculate order balance which is a dynamic value of the screen.
+*/
 window.onload = function () {
-    console.log('loading PAGE');
+
     calculateTotal();
 
 }
 
+/* 
+- Function to get the string entered by user in search bar.
+- Searches the value entered against SKU for materials in DB.
+- Returns a list of potential matches of the search displaye when calling 'displayMaterials(materials)'.
+*/
 async function searchMaterialHandler(event) {
 
     event.preventDefault();
@@ -29,11 +36,14 @@ async function searchMaterialHandler(event) {
     });
 
     let materials = await response.json();
-    console.log(materials);
 
     displayMaterials(materials);
 }
 
+/*
+- Retrieves data for selected material in search results,
+- moves material to document list as an item of the order when calling 'addMat(material)'.
+*/
 async function selectMaterial(idMaterial) {
 
     tabMaterials.innerHTML = '';
@@ -57,6 +67,9 @@ async function selectMaterial(idMaterial) {
 
 }
 
+/*
+- Creates dinamically HTML objects to display the search results when user enters a string in the search bar.
+*/
 function  displayMaterials(arrMaterials){
     tabMaterials.innerHTML = '';
 
@@ -103,17 +116,17 @@ function  displayMaterials(arrMaterials){
         _tr.append(_td3);
         _td4.innerHTML = `<button type="button" class="btn btn-primary fa-xs" id="btnAdd-${material.id}" onclick="selectMaterial(${material.id})"><i class="fa-solid fa-circle-plus"></i></button>`;
         _tr.append(_td4);
-        console.log(material.sku);
         
     });
 
 }
 
+/*
+- Creates dinamically HTML objects to display the selected item from search bar and passes it to item list of the order.
+- At the end call 'calculateTotal()' to recalculate the order balance with the recently added item value.
+*/
 function addMat(myMaterial){
 
-    console.log(myMaterial);
-
-    
     tabMaterials.innerHTML = '';
 
     var _divrow = document.createElement('div');
@@ -170,14 +183,12 @@ function addMat(myMaterial){
                             calculateTotal();
                         }
     _inputqty.onclick = function(){
-                            //addQtyToItem(myMaterial.id);
                             calculateTotal();
                         };
     _btnplus = document.createElement('button');
     _btnplus.className = 'btn btn-link px-2';
     _btnplus.onclick = function(){
                             this.parentNode.querySelector('input[type=number]').stepUp();
-                            //addQtyToItem(myMaterial.id);
                             calculateTotal();
                         };
     _iplus = document.createElement('i');
@@ -233,30 +244,26 @@ function addMat(myMaterial){
 
 }
 
-function addQtyToItem(idMaterial){
-
-    //console.log(idMaterial);
-    //console.log(document.getElementById(`qty-${idMaterial}`).value);
-
-    const toAdd = document.getElementById(`qty-${idMaterial}`).value * document.getElementById(`prc-${idMaterial}`).dataset.value;
-
-    console.log(toAdd);
-
-}
-
+/*
+- Checks if a given material is already part of the order items.
+- makes use of global var lstMat which holds the IDs of the items which are part of the order.
+- If a given material is already part of the order, prevents adding it twice.
+*/
 function addIdMaterial(idMaterial){
 
     if(lstMat.includes(idMaterial)){
-        console.log('Already in lst');
         return false;
     }
 
     lstMat.push(idMaterial);
-    console.log(lstMat);
-    return true;
-    
+    return true;  
 }
 
+/*
+- Checks screen is ready for submission to update an order.
+- Assembles JSON object to send it to order update end point.
+- handles response & re-directs user to orders list screen.
+*/
 async function updateOrder(idOrder){
 
     if (document.getElementById('inputClient').value == 0){
@@ -284,10 +291,6 @@ async function updateOrder(idOrder){
 
     });
 
-    console.log(JSON.stringify({
-        items: itmArr,
-    }),);
-
     const response = await fetch(`/order/${idOrder}`, {
         method: 'PUT',
         body: JSON.stringify({
@@ -298,8 +301,6 @@ async function updateOrder(idOrder){
         },
     });
 
-    console.log(response);
-
     if(response.ok){
         document.location.replace('/order/header');
     }else{
@@ -308,6 +309,10 @@ async function updateOrder(idOrder){
 
 }
 
+/*
+- Walks through global var 'LstMat' which holds the IDs of the items contained in the order to calculate the balance of the order.
+- This function is called from several points in the code, since there are different actions that can trigger a recalculation of the order balance.
+*/
 function calculateTotal(){
 
     let price = 0;
@@ -316,13 +321,7 @@ function calculateTotal(){
 
     lstMat.forEach(material => { 
 
-
         const txtcnt = document.getElementById(`prc-${material}`).textContent.split(' ');
-
-        console.log(material);
-        console.log(txtcnt[1]);
-        console.log(document.getElementById(`prc-${material}`).dataset.value);
-        console.log(document.getElementById(`qty-${material}`).value);
 
         price = txtcnt[1];
         qty = document.getElementById(`qty-${material}`).value;
@@ -335,11 +334,20 @@ function calculateTotal(){
 
 }
 
+/*
+- Deletes material form items list of the order.
+- Deletes ID of material from global var 'lstMat'.
+- Calls 'calculateTotal()' to recalculate the balance of the order'.
+*/
 function deleteItm(matId) { 
+
     document.getElementById(`row-${matId}`).remove(); 
     lstMat.splice(lstMat.indexOf(matId), 1 );
     calculateTotal();
+
 };
 
-// Add event handler for search bar
+/*
+- Add event handler for search bar
+*/
 searchMaterials.addEventListener('click', searchMaterialHandler);
