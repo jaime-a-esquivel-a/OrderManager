@@ -17,6 +17,6 @@ function calculateTotal(){
 
     });
 
-    document.getElementById('orderTotal').textContent = '$ ' + total; //Place total in the corresponding element in view
+    document.getElementById('orderTotal').textContent = '$ ' + total.toFixed(2); //Place total in the corresponding element in view
 
 }
