@@ -48,7 +48,7 @@ Es una aplicación de gestión de órdenes de venta de materiales, que permite r
 ## Uso
   
 * Ingresar a la aplicación desplegada en **[Heroku](https://order-manager-application.herokuapp.com/ "click")** o acceder desde el navegador  con la dirección [http://localhost:3001](http://localhost:3001 ) despues de haber ejecutado el archivo como muestra la sección de [Instalación](#instalación).
-* Al ingresar a la aplicación es necesario iniciar sesión introduciendo credenciales (correo electrónico y contraseña) de acuerdo con el usuario con el que desee acceder y después dar click en "Login" para ingresar a la página de inicio.
+* Al ingresar a la aplicación es necesario iniciar sesión introduciendo credenciales (correo electrónico y contraseña) de acuerdo con el usuario con el que desee acceder y después dar click en "Login" para ingresar a la página de inicio. Si aún no tienes un usuario creado en el sistema puedes acceder al sistema usando **Usuario: super.user@om.com** y **Contraseña:12345678**.
 
   <img src="./public/images/InicioSesion.png" alt="Inicio de sesión" width="400" height="500">
 * Al ingresar a la página de inicio "Home" se le mostrará un menú con la barra de navegación de la página, una gráfica con la cantidad de órdenes del usuario que ha iniciado sesión de acuerdo a su status.
